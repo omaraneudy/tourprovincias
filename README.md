@@ -6,9 +6,14 @@ Esta página se encargará de permitir a las personas realizar reservaciones par
 
 Esta página permitiría: 
 
-Crear cuentas de usuario para hacer reservaciones 
-Consultar lugares turísticos de las provincias a las que se ofrecen tours 
-Consultar los tours disponibles 
-Realizar preguntas sobre algún tour 
-Hacer reservaciones para algún tour 
-Realizar una cancelación de un tour reservado
+-Crear cuentas de usuario para hacer reservaciones
+
+-Consultar lugares turísticos de las provincias a las que se ofrecen tours 
+
+-Consultar los tours disponibles 
+
+-Realizar preguntas sobre algún tour 
+
+-Hacer reservaciones para algún tour 
+
+-Realizar una cancelación de un tour reservado
