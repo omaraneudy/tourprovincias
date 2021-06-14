@@ -24,7 +24,7 @@
     $item = "pk_tour_provincia";
     $valor = $_GET["id"];
 
-    $tourprovincia = ControladorFormularios::ctrSeleccionarTour($item, $valor);
+    $tourprovincia = ControladorPaginas::ctrSeleccionarTour($item, $valor);
 
 }
 ?>

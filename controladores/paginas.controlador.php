@@ -1,6 +1,6 @@
 <?php
 
-class ControladorFormularios{
+class ControladorPaginas{
 
 
 	static public function ctrRegistroCliente(){
@@ -11,7 +11,7 @@ class ControladorFormularios{
 
 			$datos = array("nombre" => $_POST["registroNombre"], "correo" => $_POST["registroCorreo"],"contrasena" => $_POST["registroContrasena"],"cedula" => $_POST["registroCedula"], "fecha_nacimiento" => $_POST["registroFecha"],"celular" => $_POST["registroCelular"],"telefono" => $_POST["registroTelefono"], "apellido" => $_POST["registroApellido"]);
 
-			$respuesta = ModeloFormularios::mdlRegistroCliente($tabla, $datos);
+			$respuesta = ModeloPaginas::mdlRegistroCliente($tabla, $datos);
 
 			return $respuesta;
 
@@ -21,13 +21,13 @@ class ControladorFormularios{
 
 	static public function ctrRegistroUsuario(){
 
-		if(isset($_POST["registroNombre"])){
+		if(isset($_POST["registroUsuario"]) && isset($_POST["registroCorreo"])){
 
 			$tabla = "usuario";
 
-			$datos = array("nombre_usuario" => $_POST["registroUsuario"], "correo" => $_POST["registroCorreo"],"contrasena" => $_POST["registroContrasena"],"fk_tipo" => $_POST["registroTipo"]);
+			$datos = array("nombre_usuario" => $_POST["registroUsuario"], "correo" => $_POST["registroCorreo"],"contrasena" => $_POST["registroContrasena"],"fk_tipo" => $_POST["registroTipoC"]);
 
-			$respuesta = ModeloFormularios::mdlRegistroUsuario($tabla, $datos);
+			$respuesta = ModeloPaginas::mdlRegistroUsuario($tabla, $datos);
 
 			return $respuesta;
 
@@ -40,11 +40,22 @@ class ControladorFormularios{
 
 		$tabla = "tour_provincia";
 
-		$respuesta = ModeloFormularios::mdlSeleccionarTour($tabla, $item, $valor);
+		$respuesta = ModeloPaginas::mdlSeleccionarTour($tabla, $item, $valor);
 
 		return $respuesta;
 
 	}
+
+	static public function ctrSeleccionarTipoUsuario($item, $valor){
+
+		$tabla = "tipo_usuario";
+
+		$respuesta = ModeloPaginas::mdlSeleccionarTipoUsuario($tabla, $item, $valor);
+
+		return $respuesta;
+
+	}
+
 
 	//iniciar sesión
 	public function ctrIngreso(){
@@ -55,7 +66,7 @@ class ControladorFormularios{
 			$item = "nombre_usuario";
 			$valor = $_POST["ingresoUsuario"];
 
-			$respuesta = ModeloFormularios::mdlSeleccionarUsuario($tabla, $item, $valor);
+			$respuesta = ModeloPaginas::mdlSeleccionarUsuario($tabla, $item, $valor);
 
 			if($respuesta["nombre_usuario"] == $_POST["ingresoUsuario"] && $respuesta["contrasena"] == $_POST["ingresoContrasena"]){
 
@@ -86,7 +97,7 @@ class ControladorFormularios{
 
 				</script>';
 
-				echo '<div class="alert alert-danger">Error al ingresar al sistema, el usuario o la contraseña no coinciden</div>';
+				echo '<div class="alert alert-danger">Error al iniciar sesión, el usuario o la contraseña no coinciden</div>';
 			}
 			
 			

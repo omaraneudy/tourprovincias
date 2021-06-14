@@ -17,7 +17,7 @@ if(!isset($_SESSION["validarIngreso"])){
 	
 }
 
-$tourprovincia = ControladorFormularios::ctrSeleccionarTour(null, null);
+$tourprovincia = ControladorPaginas::ctrSeleccionarTour(null, null);
 
 
 ?>

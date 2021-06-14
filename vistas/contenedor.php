@@ -180,6 +180,7 @@ session_start();
 						$_GET["pagina"] == "inicio" ||
 						$_GET["pagina"] == "tourprovincia"||
 						$_GET["pagina"] == "salir"||
+						$_GET["pagina"] == "pruebas"||
 						$_GET["pagina"] == "registrocliente"){
 
 							include "paginas/".$_GET["pagina"].".php";
@@ -249,7 +250,7 @@ session_start();
 							<li><a href="#contact" class="scroll"> South Africa </a></li>
 						</ul>
 						<ul class="col-6 links">
-							<li><a href="#">Spain </a></li>
+							<li><a href="index.php?pagina=pruebas">pruebas </a></li>
 							<li><a href="#">Turkey </a></li>
 							<li><a href="#faq" class="scroll">Europe </a></li>
 							<li><a href="#">Italy </a></li>

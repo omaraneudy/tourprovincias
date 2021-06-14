@@ -1,5 +1,10 @@
 
+<?php
+$tipousuario = ControladorPaginas::ctrTipoUsuario("pk_id_tipo", "1");
 
+//print_r($tipousuario["pk_id_tipo"]);
+
+?>
 	<form  method="post">
 
 			<label for="nombre">Nombre:</label><input type="text" class="form-control" name="registroNombre">
@@ -18,14 +23,14 @@
 			<label >Telefono</label><input type="number" class="form-control" name="registroTelefono">
 			
 			<label >Celular</label><input type="number" class="form-control" name="registroCelular">
-                                    <input type="hidden" name="registroTipo" value="1">
+                                    <input type="hidden" name="registroTipoC" value="<?php $tipousuario["pk_id_tipo"];?>">
 
 		<?php 
 
-		$registrocliente = ControladorFormularios::ctrRegistroCliente();
-		$registrousuario = ControladorFormularios::ctrRegistroUsuario();
+		$registrocliente = ControladorPaginas::ctrRegistroCliente();
+		$registrousuario = ControladorPaginas::ctrRegistroUsuario();
 
-		if($registrocliente == "ok" && $registrocliente == "ok"){
+		if($registrocliente == "ok" && $registrousuario == "ok"){
 
 			echo '<script>
 
