@@ -181,6 +181,7 @@ session_start();
 						$_GET["pagina"] == "tourprovincia"||
 						$_GET["pagina"] == "salir"||
 						$_GET["pagina"] == "pruebas"||
+						$_GET["pagina"] == "empleado"||
 						$_GET["pagina"] == "registrocliente"){
 
 							include "paginas/".$_GET["pagina"].".php";
@@ -247,7 +248,7 @@ session_start();
 							<li><a href="#pricing" class="scroll">Los Angles</a></li>
 							<li><a href="#faq" class="scroll"> Darlington</a></li>
 							<li><a href="#testimonials" class="scroll">Canada </a></li>
-							<li><a href="#contact" class="scroll"> South Africa </a></li>
+							<li><a href="index.php?pagina=empleado">Empleado </a></li>
 						</ul>
 						<ul class="col-6 links">
 							<li><a href="index.php?pagina=pruebas">pruebas </a></li>

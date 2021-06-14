@@ -39,7 +39,7 @@
 
 		<?php 
 
-		$ingreso = new ControladorFormularios();
+		$ingreso = new ControladorPaginas();
 		$ingreso -> ctrIngreso();
 
 		?>

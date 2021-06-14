@@ -57,6 +57,18 @@ class ControladorPaginas{
 	}
 
 
+
+	static public function ctrSeleccionarEmpleado($item, $valor){
+
+		$tabla = "empleado";
+
+		$respuesta = ModeloPaginas::mdlSeleccionarEmpleado($tabla, $item, $valor);
+
+		return $respuesta;
+
+	}
+
+
 	//iniciar sesión
 	public function ctrIngreso(){
 

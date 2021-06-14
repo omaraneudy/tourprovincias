@@ -77,8 +77,6 @@ class ModeloPaginas{
 		$stmt->bindParam(":apellido", $datos["apellido"], PDO::PARAM_STR);
 		$stmt->bindParam(":cargo", $datos["cargo"], PDO::PARAM_STR);
 		$stmt->bindParam(":correo", $datos["correo"], PDO::PARAM_STR);
-		
-
 
 		if($stmt->execute()){
 
@@ -123,7 +121,34 @@ class ModeloPaginas{
 
 	}
 
-//
+	static public function mdlSeleccionarEmpleado($tabla, $item, $valor){
+
+		if($item == null && $valor == null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT e.pk_id_empleado, e.nombre, e.apellido, e.fk_cargo, c.nombre AS nombre_cargo, e.correo, u.correo, u.nombre_usuario FROM $tabla e INNER JOIN cargo c ON e.fk_cargo = c.pk_id_cargo INNER JOIN usuario u ON e.correo = u.correo");
+			
+			$stmt->execute();
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT e.pk_id_empleado, e.nombre, e.apellido, e.fk_cargo, c.nombre AS nombre_cargo, e.correo, u.correo FROM $tabla e INNER JOIN cargo c ON e.fk_cargo = c.pk_id_cargo INNER JOIN usuario u ON e.correo = u.correo WHERE $item = :$item");
+			
+			$stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt->execute();
+
+			return $stmt -> fetch();
+		}
+
+		$stmt->close();
+
+		$stmt = null;	
+
+	}
+
+
 	static public function mdlSeleccionarTipoUsuario($tabla, $item, $valor){
 
 		if($item == null && $valor == null){

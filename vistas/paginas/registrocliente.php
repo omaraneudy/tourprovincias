@@ -1,6 +1,6 @@
 
 <?php
-$tipousuario = ControladorPaginas::ctrTipoUsuario("pk_id_tipo", "1");
+$tipousuario = ControladorPaginas::ctrSeleccionarTipoUsuario("pk_id_tipo", "1");
 
 //print_r($tipousuario["pk_id_tipo"]);
 
@@ -42,7 +42,7 @@ $tipousuario = ControladorPaginas::ctrTipoUsuario("pk_id_tipo", "1");
 
 			</script>';
 
-			echo '<div class="alert alert-success">Usted se ha registrado</div>';
+			echo '<div class="alert alert-success">Se ha registrado correctamente</div>';
 		
 		}
 
