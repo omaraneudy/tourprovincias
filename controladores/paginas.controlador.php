@@ -35,6 +35,22 @@ class ControladorPaginas{
 
 	}
 
+	static public function ctrRegistroTour(){
+
+		if(isset($_POST["insertarProvincia"]) && isset($_POST["insertarPrecio"])){
+
+			$tabla = "tour_provincia";
+
+			$datos = array("fk_provincia" => $_POST["insertarProvincia"], "descripcion" => $_POST["insertarDescripcion"],"fecha_inicio" => date("Y-m-d",strtotime($_POST["insertarInicio"])),"fecha_fin" => date("Y-m-d",strtotime($_POST["insertarFin"])), "precio" => $_POST["insertarPrecio"],"ruta_imagen" => "images/".$_POST["insertarImagen"],"detalle_tour" => $_POST["insertarDetalle"], "fk_estado_tour" => 2);
+
+			$respuesta = ModeloPaginas::mdlRegistroTour($tabla, $datos);
+
+			return $respuesta;
+
+		}
+
+	}
+
 	static public function ctrReservacionCliente(){
 
 		if(isset($_POST["idTour"])){
@@ -62,6 +78,18 @@ class ControladorPaginas{
 
 	}
 
+	static public function ctrConsultaClienteReservacion($item, $valor){
+
+		$tabla = "reservacion_cliente";
+		$idcliente = $_SESSION["idCliente"];
+
+		$respuesta = ModeloPaginas::mdlConsultaClienteReservacion($tabla, $item, $valor, $idcliente);
+
+		return $respuesta;
+
+	}
+
+
 	static public function ctrSeleccionarTipoUsuario($item, $valor){
 
 		$tabla = "tipo_usuario";
@@ -72,7 +100,15 @@ class ControladorPaginas{
 
 	}
 
+	static public function ctrListarProvincia($item, $valor){
 
+		$tabla = "provincia";
+
+		$respuesta = ModeloPaginas::mdlListarProvincia($tabla, $item, $valor);
+
+		return $respuesta;
+
+	}
 
 	static public function ctrSeleccionarEmpleado($item, $valor){
 

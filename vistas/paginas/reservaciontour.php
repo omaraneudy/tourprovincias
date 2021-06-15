@@ -48,6 +48,7 @@
 						<?php 
 
 						$reservacliente = ControladorPaginas::ctrReservacionCliente();
+						
 
 						if($reservacliente == "ok"){
 						

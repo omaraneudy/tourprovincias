@@ -181,6 +181,8 @@ session_start();
 						$_GET["pagina"] == "tourprovincia"||
 						$_GET["pagina"] == "salir"||
 						$_GET["pagina"] == "pruebas"||
+						$_GET["pagina"] == "reservacioncliente"||
+						$_GET["pagina"] == "registrartour"||
 						$_GET["pagina"] == "empleado"||
 						$_GET["pagina"] == "registrocliente"){
 
@@ -252,8 +254,8 @@ session_start();
 						</ul>
 						<ul class="col-6 links">
 							<li><a href="index.php?pagina=pruebas">pruebas </a></li>
-							<li><a href="#">Turkey </a></li>
-							<li><a href="#faq" class="scroll">Europe </a></li>
+							<li><a href="index.php?pagina=reservacioncliente">reservacion clientes </a></li>
+							<li><a href="index.php?pagina=registrartour">registrar tour </a></li>
 							<li><a href="#">Italy </a></li>
 							<li><a href="#">Sweden </a></li>
 						</ul>
