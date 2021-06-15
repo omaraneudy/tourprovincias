@@ -99,10 +99,10 @@ class ModeloPaginas{
 	static public function mdlReservacionCliente($tabla, $datos){
 
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(fk_tour_provincia) VALUES (:usuario,)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(fk_tour_provincia, fk_cliente, fk_estado_pago) VALUES (:id_tour_provincia, :id_cliente, '2')");
 
-		$stmt->bindParam(":id_tour_provincia", $datos["id_tour_provincia"], PDO::PARAM_STR);
-		$stmt->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_tour_provincia", $datos["id_tour_provincia"]);
+		$stmt->bindParam(":id_cliente", $datos["id_cliente"]);
 		
 
 
@@ -225,31 +225,6 @@ class ModeloPaginas{
 
 	}
 
-	/*static public function mdlSeleccionarUsuario($tabla, $item, $valor){
 
-		if($item == null && $valor == null){
-
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
-			
-			$stmt->execute();
-
-			return $stmt -> fetchAll();
-
-		}else{
-
-			$stmt = Conexion::conectar()->prepare("SELECT u.*,  c.pk_id_cliente FROM $tabla u inner join cliente c on u.correo = c.correo WHERE $item = :$item and u.fk_tipo = 1");
-			
-			$stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
-
-			$stmt->execute();
-
-			return $stmt -> fetch();
-		}
-
-		$stmt->close();
-
-		$stmt = null;	
-
-	}*/
 
 }

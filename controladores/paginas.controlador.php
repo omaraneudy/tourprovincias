@@ -35,6 +35,22 @@ class ControladorPaginas{
 
 	}
 
+	static public function ctrReservacionCliente(){
+
+		if(isset($_POST["idTour"])){
+
+			$tabla = "reservacion_cliente";
+
+			$datos = array("id_tour_provincia" => $_POST["idTour"], "id_cliente" => $_SESSION["idCliente"]);
+
+			$respuesta = ModeloPaginas::mdlReservacionCliente($tabla, $datos);
+
+			return $respuesta;
+
+		}
+
+	}
+
 	//mostrar tours disponibles
 	static public function ctrSeleccionarTour($item, $valor){
 

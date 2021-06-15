@@ -43,6 +43,31 @@
 					
 					<h4><?php echo $tourprovincia["descripcion"]; ?></h4>
 					<p class="mt-3"> <?php echo $tourprovincia["detalle_tour"]; ?></p>
+					<form method="post">
+						<input type="hidden" value="<?php echo $_GET["id"];?>" name="idTour">
+						<?php 
+
+						$reservacliente = ControladorPaginas::ctrReservacionCliente();
+
+						if($reservacliente == "ok"){
+						
+							echo '<script>
+						
+								if ( window.history.replaceState ) {
+								
+									window.history.replaceState( null, null, window.location.href );
+								
+								}
+							
+							</script>';
+							
+							echo '<div class="alert alert-success">La reservación se ha realizado correctamente</div>';
+							
+						}
+					
+						?>
+						<button type="submit">Reservar</button>
+					</form>
 
 
 					
