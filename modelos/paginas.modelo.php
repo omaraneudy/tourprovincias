@@ -94,6 +94,33 @@ class ModeloPaginas{
 
 	}
 
+
+
+	static public function mdlReservacionCliente($tabla, $datos){
+
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(fk_tour_provincia) VALUES (:usuario,)");
+
+		$stmt->bindParam(":id_tour_provincia", $datos["id_tour_provincia"], PDO::PARAM_STR);
+		$stmt->bindParam(":id_cliente", $datos["id_cliente"], PDO::PARAM_STR);
+		
+
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}else{
+
+			print_r(Conexion::conectar()->errorInfo());
+
+		}
+
+		$stmt->close();
+
+		$stmt = null;	
+
+	}
 	static public function mdlSeleccionarTour($tabla, $item, $valor){
 
 		if($item == null && $valor == null){
@@ -133,13 +160,13 @@ class ModeloPaginas{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT e.pk_id_empleado, e.nombre, e.apellido, e.fk_cargo, c.nombre AS nombre_cargo, e.correo, u.correo FROM $tabla e INNER JOIN cargo c ON e.fk_cargo = c.pk_id_cargo INNER JOIN usuario u ON e.correo = u.correo WHERE $item = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT e.pk_id_empleado, e.nombre, e.apellido, e.fk_cargo, c.nombre AS nombre_cargo, e.correo, u.correo, u.nombre_usuario FROM $tabla e INNER JOIN cargo c ON e.fk_cargo = c.pk_id_cargo INNER JOIN usuario u ON e.correo = u.correo WHERE e.$item = :$item");
 			
 			$stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
 
 			$stmt->execute();
 
-			return $stmt -> fetch();
+			return $stmt -> fetchAll();
 		}
 
 		$stmt->close();
@@ -178,6 +205,28 @@ class ModeloPaginas{
 
 	static public function mdlSeleccionarUsuario($tabla, $item, $valor){
 
+		$stmt = Conexion::conectar()->prepare("SELECT u.*,  c.pk_id_cliente, c.nombre FROM $tabla u inner join cliente c on u.correo = c.correo WHERE $item = :$item and u.fk_tipo = 1");
+		
+		$stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+		if($stmt->execute()){
+
+			return $stmt -> fetch();
+
+		}else{
+
+			print_r(Conexion::conectar()->errorInfo());
+
+		}
+
+		$stmt->close();
+
+		$stmt = null;	
+
+	}
+
+	/*static public function mdlSeleccionarUsuario($tabla, $item, $valor){
+
 		if($item == null && $valor == null){
 
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
@@ -188,7 +237,7 @@ class ModeloPaginas{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT u.*,  c.pk_id_cliente FROM $tabla u inner join cliente c on u.correo = c.correo WHERE $item = :$item and u.fk_tipo = 1");
 			
 			$stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -201,11 +250,6 @@ class ModeloPaginas{
 
 		$stmt = null;	
 
-	}
-
-	
-
-
-
+	}*/
 
 }

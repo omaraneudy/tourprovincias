@@ -5,25 +5,42 @@ $empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
 
 ?>
 
-<table class="table table-striped">
-	<thead>
-		<tr>
+<table>
+<tr>
+		<thead>
 			<th><form method="post">
 					<input type="text" name="nombreEmpleado">
-					<button type="submit" ></button>
+					<button type="submit"  >Buscar</button>
 
 					<?php
+						if(isset($_POST["nombreEmpleado"]) && $_POST["nombreEmpleado"]!= null)
+						{
+							$nombreempleado = $_POST["nombreEmpleado"];
+							$empleados = ControladorPaginas::ctrSeleccionarEmpleado("nombre",$nombreempleado);
+						}
+						else{
+							$empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
 
-						//$eliminar = new ControladorPaginas();
-						//$eliminar -> ctrEliminarRegistro();
+						}
+						
 
 					?>
 
 				</form>	
 			</th>
-			<th>       </th>
+			<th>  </th>
+			<th>  </th>
+			<th>  </th>
+			<th>  </th>
+			<th>  </th>
 			<th><a href="index.php?pagina=registrarempleado">Nuevo</a></th>
+		</thead>
 		</tr>
+		</table>
+
+<table class="table table-striped">
+	<thead>
+		
 		<tr>
 			<th>id</th>
 			<th>Nombre</th>
@@ -45,12 +62,16 @@ $empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
 			<td><?php echo $emp["correo"]; ?></td>
             <td><?php echo $emp["nombre_cargo"]; ?></td>
 			<td><?php echo $emp["nombre_usuario"]; ?></td>
-            <td> <a href="index.php?pagina=editarempleado&id=<?php echo $emp["pk_id_empleado"]; ?>" >Editar</a>
-            <form method="post">
+            <td> 
+			<div class="btn-group">
+			<div>
+			<a href="index.php?pagina=editarempleado&id=<?php echo $emp["pk_id_empleado"]; ?>" class="btn btn-warning" >Editar</a>
+            </div>
+			<form method="post">
 
                 <input type="hidden" value="<?php echo $value["id"]; ?>" name="eliminarRegistro">
 
-                <button type="submit" ></button>
+                <button type="submit" class="btn btn-secondary">Deshabilitar</button>
 
                 <?php
     
@@ -60,6 +81,7 @@ $empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
                 ?>
 
 			</form>	
+			</div>
 			</td>
 		</tr>
 		

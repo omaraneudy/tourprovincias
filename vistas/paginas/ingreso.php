@@ -8,12 +8,6 @@
 
 			<div class="input-group">
 				
-				<div class="input-group-prepend">
-					<span class="input-group-text">
-						<i class="fas fa-envelope"></i>
-					</span>
-				</div>
-
 				<input type="text" class="form-control" id="email" name="ingresoUsuario">
 			
 			</div>
@@ -24,14 +18,8 @@
 			<label for="pwd">Contraseña:</label>
 
 			<div class="input-group">
-				
-				<div class="input-group-prepend">
-					<span class="input-group-text">
-						<i class="fas fa-lock"></i>
-					</span>
-				</div>
 
-				<input type="password" class="form-control" id="pwd" name="ingresoContrasena">
+				<input type="password" class="form-control"  name="ingresoContrasena">
 
 			</div>
 

@@ -72,7 +72,7 @@ class ControladorPaginas{
 	//iniciar sesión
 	public function ctrIngreso(){
 
-		if(isset($_POST["ingresoUsuario"])){
+		if(isset($_POST["ingresoUsuario"]) && $_POST["ingresoUsuario"]!= null && $_POST["ingresoContrasena"]!= null){
 
 			$tabla = "usuario";
 			$item = "nombre_usuario";
@@ -83,6 +83,8 @@ class ControladorPaginas{
 			if($respuesta["nombre_usuario"] == $_POST["ingresoUsuario"] && $respuesta["contrasena"] == $_POST["ingresoContrasena"]){
 
 				$_SESSION["validarIngreso"] = "ok";
+				$_SESSION["idCliente"] = $respuesta["pk_id_cliente"];
+				$_SESSION["nombreCliente"] = $respuesta["nombre"];
 
 				echo '<script>
 

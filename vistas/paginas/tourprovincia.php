@@ -36,7 +36,7 @@ $tourprovincia = ControladorPaginas::ctrSeleccionarTour(null, null);
 <section class="packages pt-5">
 	<div class="container py-lg-4 py-sm-3">
 		<h2 class="heading text-capitalize text-center"> Discover our tour packages</h2>
-		<p class="text mt-2 mb-5 text-center">Vestibulum tellus neque, sodales vel mauris at, rhoncus finibus augue. Vestibulum urna ligula, molestie at ante ut, finibus vulputate felis.</p>
+		<p class="text mt-2 mb-5 text-center">Vestibulum tellus neque, id del cliente<?php echo $_SESSION["idCliente"];?> y nombre del cliente <?php echo $_SESSION["nombreCliente"];?>vel mauris at, rhoncus finibus augue. Vestibulum urna ligula, molestie at ante ut, finibus vulputate felis.</p>
 		<div class="row">
 			
             <?php foreach ($tourprovincia as $tour): ?>
