@@ -51,6 +51,22 @@ class ControladorPaginas{
 
 	}
 
+	static public function ctrEditarTour(){
+
+		if(isset($_POST["actualizarProvincia"]) && isset($_POST["actualizarPrecio"])){
+
+			$tabla = "tour_provincia";
+
+			$datos = array("fk_provincia" => $_POST["actualizarProvincia"], "descripcion" => $_POST["actualizarDescripcion"],"fecha_inicio" => date("Y-m-d",strtotime($_POST["actualizarInicio"])),"fecha_fin" => date("Y-m-d",strtotime($_POST["actualizarFin"])), "precio" => $_POST["actualizarPrecio"],"ruta_imagen" => "images/".$_POST["actualizarImagen"],"detalle_tour" => $_POST["actualizarDetalle"], "fk_estado_tour" => 2);
+
+			$respuesta = ModeloPaginas::mdlEditarTour($tabla, $datos);
+
+			return $respuesta;
+
+		}
+
+	}
+
 	static public function ctrReservacionCliente(){
 
 		if(isset($_POST["idTour"])){

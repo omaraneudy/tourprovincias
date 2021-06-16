@@ -25,6 +25,8 @@
     $valor = $_GET["id"];
 
     $tourprovincia = ControladorPaginas::ctrSeleccionarTour($item, $valor);
+	$reservacion = ControladorPaginas::ctrConsultaClienteReservacion($item, $valor);
+
 
 }
 ?>
@@ -67,7 +69,11 @@
 						}
 					
 						?>
-						<button type="submit">Reservar</button>
+						<?php if(isset($reservacion["fk_tour_provincia"])):?>
+							<?php echo"<label >Reservado</label>";?>
+							<?php else:?>
+							<?php echo"<button type=\"submit\">Reservar</button>";?>
+								<?php endif ?>
 					</form>
 
 

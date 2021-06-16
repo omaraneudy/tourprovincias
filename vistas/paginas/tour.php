@@ -1,6 +1,7 @@
 <?php
 
 $tourprovincia = ControladorPaginas::ctrSeleccionarTour(null, null);
+$provincias = ControladorPaginas::ctrListarProvincia(null,null);
 
 ?>
 <div class="container-fluid">
@@ -14,7 +15,7 @@ $tourprovincia = ControladorPaginas::ctrSeleccionarTour(null, null);
 
                     </li>
                     <li class="nav-item">
-                        <a href="index.php?pagina=registrartour" class="nav-link align-middle px-0">
+                        <a href="index.php?pagina=tour" class="nav-link align-middle px-0">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Tours</span>
                         </a>
                     </li>
@@ -43,24 +44,26 @@ $tourprovincia = ControladorPaginas::ctrSeleccionarTour(null, null);
 
                 <DIV>
                 <h3 class="heading text-capitalize text-center">Tours</h3>
-				<table>
+				<table >
 <tr>
 		<thead>
 		
                 <th><form method="post">
                 <label>Buscar por provincia</label>
-			<select name="provincia">
+		
+            <select name="prov">
             <option value="" ></option>
             <?php foreach($provincias as $prov):?>
             <option value ="<?php echo $prov["pk_id_provincia"];?>"><?php echo $prov["nombre_provincia"]; ?></option>
             <?php endforeach ?>
-            </select><br>
+            </select>
+            
 					<button type="submit"  >Buscar</button>
 
 					<?php
-						if(isset($_POST["provincia"]) && $_POST["provincia"]!= null)
+						if(isset($_POST["prov"]) && $_POST["prov"]!= null)
 						{
-							$provincia = $_POST["provincia"];
+							$provincia = $_POST["prov"];
 							$tourprovincia = ControladorPaginas::ctrSeleccionarTour("fk_provincia",$provincia);
 						}
 						else{
@@ -74,49 +77,47 @@ $tourprovincia = ControladorPaginas::ctrSeleccionarTour(null, null);
 				</form>	
 
 
-			</th>
-			<th>  </th>
-			<th>  </th>
-			<th>  </th>
-			<th>  </th>
-			<th>  </th>
-			<th><a href="index.php?pagina=registrartour" class="btn btn-success">Agregar nuevo Tour</a></th>
-		</thead>
-		</tr>
-		</table>
+		
+			<th><a href="index.php?pagina=registrartour" class="btn btn-success">Nuevo Tour</a></th>
 
+
+
+
+	
 <table class="table table-striped">
 	<thead>
 		
 		<tr>
 			<th>id</th>
-			<th>Nombre</th>
-			<th>Apellido</th>
-			<th>Correo</th>
-            <th>Cargo</th>
-			<th>Usuario</th>
+			<th>Provincia</th>
+			<th>Duración</th>
+			<th>Precio</th>
+            <th>Fecha de inicio</th>
+			<th>Finaliza en</th>
+            <th>Estado del tour</th>
 		</tr>
 	</thead>
 
 	<tbody>
 
 	<?php foreach ($tourprovincia as $tour): ?>
-        "SELECT DATEDIFF(t.fecha_fin, t.fecha_inicio) As duracion, t.pk_tour_provincia, t.descripcion, t.fecha_inicio, t.fecha_fin, p.nombre_provincia, t.precio, t.ruta_imagen, t.detalle_tour  FROM $tabla t inner join provincia p on t.fk_provincia = p.pk_id_provincia WHERE $item = :$item ORDER BY t.pk_tour_provincia DESC");
-		<tr>
+       		<tr>
 			<td><?php echo $tour["pk_tour_provincia"]; ?></td>
 			<td><?php echo $tour["nombre_provincia"]; ?></td>
 			<td><?php echo $tour["duracion"]; ?> día(s)</td>
-			<td><?php echo $emp["precio"]; ?></td>
-            <td><?php echo $emp["fecha_inicio"]; ?></td>
-			<td><?php echo $emp["fecha_fin"]; ?></td>
+			<td>RD$<?php echo $tour["precio"]; ?></td>
+            <td><?php echo $tour["fecha_inicio"]; ?></td>
+			<td><?php echo $tour["fecha_fin"]; ?></td>
+            <td><?php echo $tour["estado_tour"]; ?></td>
+
             <td> 
 			<div class="btn-group">
 			<div>
-			<a href="index.php?pagina=editartour&id=<?php echo $tour["pk_tour_provincia"]; ?>" class="btn btn-warning" >Editar</a>
+			<a href="index.php?pagina=editartour&idp=<?php echo $tour["pk_tour_provincia"]; ?>" class="btn btn-warning" >Editar</a>
             </div>
 			<form method="post">
 
-                <input type="hidden" value="<?php echo $value["id"]; ?>" name="">
+                <input type="hidden" value="<?php echo $tour["pk_tour_provincia"]; ?>" name="deshabilitarTour">
 
                 <button type="submit" class="btn btn-secondary">Deshabilitar</button>
 

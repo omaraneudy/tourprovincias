@@ -109,7 +109,8 @@ $provincias = ControladorPaginas::ctrListarProvincia(null,null);
 			<th>Fecha de inicio del tour</th>
 			<th>Fecha del fin del tour</th>
             <th>id tour provincia</th>
-			<th>id estado pago</th>
+			<th>Provincia</th>
+			<th>Estado del pago</th>
 		</tr>
 	</thead>
 
@@ -123,7 +124,8 @@ $provincias = ControladorPaginas::ctrListarProvincia(null,null);
 			<td><?php echo $res["fecha_inicio"]; ?></td>
 			<td><?php echo $res["fecha_fin"]; ?></td>
             <td><?php echo $res["fk_tour_provincia"]; ?></td>
-			<td><?php echo $res["fk_estado_pago"]; ?></td>
+			<td><?php echo $res["nombre_provincia"]; ?></td>
+			<td><?php echo $res["estado"]; ?></td>
             <td> 
 			<div class="btn-group">
 			<div>
@@ -139,7 +141,6 @@ $provincias = ControladorPaginas::ctrListarProvincia(null,null);
 					//echo "id estado pago".$_POST["can"];
 					//echo "id reservacion".$_POST["cancelarReservacion"];
                     $cancelar = ControladorPaginas::ctrEstadoReservacion();
-			
 					?>
 					<?php if($res["fk_estado_pago"]!= 3):?>
 					<button type="submit" class="btn btn-secondary">Cancelar Reservación</button>

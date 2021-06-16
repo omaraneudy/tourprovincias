@@ -3,7 +3,7 @@
 $tourprovincia = ControladorPaginas::ctrSeleccionarTour(null, null);
 
 ?>
-
+<div></div>
 <!-- tour packages -->
 <section class="packages pt-5">
 	<div class="container py-lg-4 py-sm-3">
@@ -12,6 +12,7 @@ $tourprovincia = ControladorPaginas::ctrSeleccionarTour(null, null);
 		<div class="row">
 			
             <?php foreach ($tourprovincia as $tour): ?>
+				<?php if ($tour["estado_tour"] == "Activo"): ?>
 
 			<div class="col-lg-3 col-sm-6 mb-5">
 				<div class="image-tour position-relative">
@@ -29,6 +30,7 @@ $tourprovincia = ControladorPaginas::ctrSeleccionarTour(null, null);
 
 				</div>
 			</div>
+			<?php endif  ?>
 			<?php endforeach ?>
 			
 			
