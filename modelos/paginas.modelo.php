@@ -178,7 +178,29 @@ class ModeloPaginas{
 
 	}
 
+	static public function mdlEstadoReservacion($tabla, $datos){
+	
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET fk_estado_pago = :estado_pago WHERE pk_id_reservacion = :id");
 
+		$stmt->bindParam(":estado_pago", $datos["fk_estado_pago"], PDO::PARAM_STR);
+		$stmt->bindParam(":id", $datos["id_reservacion"], PDO::PARAM_STR);
+
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}else{
+
+			print_r(Conexion::conectar()->errorInfo());
+
+		}
+
+		$stmt->close();
+
+		$stmt = null;	
+
+	}
 
 	static public function mdlSeleccionarTour($tabla, $item, $valor){
 
@@ -291,7 +313,7 @@ class ModeloPaginas{
 
 	static public function mdlSeleccionarUsuario($tabla, $item, $valor){
 
-		$stmt = Conexion::conectar()->prepare("SELECT u.*,  c.pk_id_cliente, c.nombre FROM $tabla u inner join cliente c on u.correo = c.correo WHERE $item = :$item and u.fk_tipo = 1");
+		$stmt = Conexion::conectar()->prepare("SELECT u.*,  c.pk_id_cliente, c.nombre FROM $tabla u inner join cliente c on u.correo = c.correo WHERE $item = :$item");
 		
 		$stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
 

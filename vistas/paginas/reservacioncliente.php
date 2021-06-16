@@ -1,5 +1,23 @@
 <?php
 
+if(!isset($_SESSION["validarIngreso"])){
+
+	echo '<script>window.location = "index.php?pagina=ingreso";</script>';
+
+	return;
+
+}else{
+
+	if($_SESSION["validarIngreso"] != "ok"){
+
+		echo '<script>window.location = "index.php?pagina=ingreso";</script>';
+
+		return;
+	}
+	
+}
+
+
 $reservacion = ControladorPaginas::ctrConsultaClienteReservacion(null, null);
 
 
@@ -33,7 +51,7 @@ $reservacion = ControladorPaginas::ctrConsultaClienteReservacion(null, null);
 			<th>  </th>
 			<th>  </th>
 			<th>  </th>
-			<th><a href="index.php?pagina=registrarempleado">Nuevo</a></th>
+			<th><a href="index.php?pagina=tourprovincia">Nueva reservación</a></th>
 		</thead>
 		</tr>
 		</table>
@@ -43,11 +61,11 @@ $reservacion = ControladorPaginas::ctrConsultaClienteReservacion(null, null);
 		
 		<tr>
 			<th>id Reservación</th>
-			<th>Nombre</th>
-			<th>Apellido</th>
-			<th>Correo</th>
-            <th>Cargo</th>
-			<th>Usuario</th>
+			<th>Reservación realizada en:</th>
+			<th>Fecha de inicio del tour</th>
+			<th>Fecha del fin del tour</th>
+            <th>id tour provincia</th>
+			<th>id estado pago</th>
 		</tr>
 	</thead>
 
@@ -65,19 +83,24 @@ $reservacion = ControladorPaginas::ctrConsultaClienteReservacion(null, null);
             <td> 
 			<div class="btn-group">
 			<div>
-			<a href="index.php?pagina=editarempleado&id=<?php //echo //$emp["pk_id_empleado"]; ?>" class="btn btn-warning" >Editar</a>
+			<!--<a href="index.php?pagina=editarempleado&id=<?php //echo //$emp["pk_id_reservacion"]; ?>" class="btn btn-warning" >Editar</a>-->
             </div>
 			<form method="post">
-                <?php if($res["fk_estado_pago"]!= 3)?>{}
-                <input type="hidden" value="<?php //echo //$value["id"]; ?>" name="cancelarReservacion">
+                
+                <input type="hidden" value="<?php echo $res["pk_id_reservacion"]; ?>" name="cancelarReservacion">
+				<input type="hidden" value="3" name="can">
 
-                <button type="submit" class="btn btn-secondary">Cancelar Reservación</button>
 
-
-    
-                    //$eliminar = new ControladorPaginas();
-                    //$eliminar -> ctrEliminarRegistro();
-
+					<?php
+					//echo "id estado pago".$_POST["can"];
+					//echo "id reservacion".$_POST["cancelarReservacion"];
+                    $cancelar = ControladorPaginas::ctrEstadoReservacion();
+			
+					?>
+					<?php if($res["fk_estado_pago"]!= 3):?>
+					<button type="submit" class="btn btn-secondary">Cancelar Reservación</button>
+					<?php endif ?>
+					
 
                 
 
@@ -87,6 +110,23 @@ $reservacion = ControladorPaginas::ctrConsultaClienteReservacion(null, null);
 		</tr>
 		
 	<?php endforeach ?>	
-	
+	<?php
+		if($cancelar == "ok"){
+
+			echo '<script>
+
+				if ( window.history.replaceState ) {
+
+					window.history.replaceState( null, null, window.location.href );
+
+				}
+
+			</script>';
+
+			echo '<div class="alert alert-success">Se ha cancelado correctamente</div>';
+		
+		}
+
+	?>
 	</tbody>
 </table>

@@ -67,6 +67,21 @@ class ControladorPaginas{
 
 	}
 
+	static public function ctrEstadoReservacion(){
+
+		if(isset($_POST["cancelarReservacion"]) && isset($_POST["can"])){
+
+			$tabla = "reservacion_cliente";
+
+			$datos = array("id_reservacion" => $_POST["cancelarReservacion"],"fk_estado_pago" => $_POST["can"]);
+
+			$respuesta = ModeloPaginas::mdlEstadoReservacion($tabla, $datos);
+
+			return $respuesta;
+
+		}
+	}
+
 	//mostrar tours disponibles
 	static public function ctrSeleccionarTour($item, $valor){
 
@@ -137,6 +152,7 @@ class ControladorPaginas{
 				$_SESSION["validarIngreso"] = "ok";
 				$_SESSION["idCliente"] = $respuesta["pk_id_cliente"];
 				$_SESSION["nombreCliente"] = $respuesta["nombre"];
+				$_SESSION["privilegio"] = $respuesta["fk_tipo"];
 
 				echo '<script>
 

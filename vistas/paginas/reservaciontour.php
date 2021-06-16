@@ -38,11 +38,11 @@
 				
 					<div class="image-tour position-relative">
 						<img src="<?php echo $tourprovincia["ruta_imagen"]; ?>" alt="" class="img-fluid" />
-						<p><span class="fa fa-tags"></span> <span>RD$<?php echo $tourprovincia["precio"]; ?></span></p>
 					</div>
 					
 					<h4><?php echo $tourprovincia["descripcion"]; ?></h4>
 					<p class="mt-3"> <?php echo $tourprovincia["detalle_tour"]; ?></p>
+					<p class="mt-3"> Precio: RD$<?php echo $tourprovincia["precio"]; ?></p>
 					<form method="post">
 						<input type="hidden" value="<?php echo $_GET["id"];?>" name="idTour">
 						<?php 

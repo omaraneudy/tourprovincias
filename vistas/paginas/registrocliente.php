@@ -23,7 +23,7 @@ $tipousuario = ControladorPaginas::ctrSeleccionarTipoUsuario("pk_id_tipo", "1");
 			<label >Telefono</label><input type="number" class="form-control" name="registroTelefono">
 			
 			<label >Celular</label><input type="number" class="form-control" name="registroCelular">
-                                    <input type="hidden" name="registroTipoC" value="<?php $tipousuario["pk_id_tipo"];?>">
+                                    <input type="hidden" name="registroTipoC" value="1">
 
 		<?php 
 

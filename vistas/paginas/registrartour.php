@@ -5,7 +5,7 @@ $provincias = ControladorPaginas::ctrListarProvincia(null,null);
 //print_r($tipousuario["pk_id_tipo"]);
 
 ?>
-	<form  method="post">
+	<form  method="post" id="formulario">
 
 			<label for="provincia">Provincia</label>
             <select name="insertarProvincia">
