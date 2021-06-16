@@ -1,4 +1,5 @@
-<?php
+
+            <?php
 
 if(!isset($_SESSION["validarIngreso"])){
 
@@ -19,22 +20,65 @@ if(!isset($_SESSION["validarIngreso"])){
 
 
 $reservacion = ControladorPaginas::ctrConsultaClienteReservacion(null, null);
-
+$provincias = ControladorPaginas::ctrListarProvincia(null,null);
 
 ?>
+           
+            <div class="container-fluid">
+    <div class="row flex-nowrap">
+        
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                </a>
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.php?pagina=reservacioncliente" class="nav-link align-middle px-0">
+                            <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Mis reservaciones</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
+                    </li>
+                </ul>
+                <hr>
+            </div>
+        </div>
+        <!-- <div class="col py-3">
+            Content area...
+        </div> -->
+
+
+                <!--AGREGADO-->
+
+                <DIV>
+                <h3 class="heading text-capitalize text-center"> Mis reservaciones</h3>
+               
 
 <table>
 <tr>
 		<thead>
 			<th><form method="post">
-					<input type="text" name="provincia">
+			<select name="provincia">
+            <option value="" ></option>
+            <?php foreach($provincias as $prov):?>
+            <option value ="<?php echo $prov["pk_id_provincia"];?>"><?php echo $prov["nombre_provincia"]; ?></option>
+            <?php endforeach ?>
+            </select><br>
 					<button type="submit"  >Buscar</button>
 
 					<?php
 						if(isset($_POST["provincia"]) && $_POST["provincia"]!= null)
 						{
 							$provincia = $_POST["provincia"];
-							$reservacion = ControladorPaginas::ctrConsultaClienteReservacion("",$provincia);
+							$reservacion = ControladorPaginas::ctrConsultaClienteReservacion("fk_provincia",$provincia);
 						}
 						else{
 							$reservacion = ControladorPaginas::ctrConsultaClienteReservacion(null, null);
@@ -130,3 +174,20 @@ $reservacion = ControladorPaginas::ctrConsultaClienteReservacion(null, null);
 	?>
 	</tbody>
 </table>
+                </DIV>
+
+        
+    
+                    </div>    
+
+                    
+                    
+                </table>
+            
+
+            <div>
+                
+        </div>
+
+    </div>
+</div>

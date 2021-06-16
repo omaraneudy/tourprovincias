@@ -55,29 +55,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 					<?php if (isset($_GET["pagina"])): ?>
 
-					<?php if ($_GET["pagina"] == "reservaciontour"): ?>
-						<li class="active">
-							<a href="index.php?pagina=reservaciontour">Reservacion tour</a>
-						</li>
-
-					<?php else: ?>
-						<li class="">
-							<a  href="index.php?pagina=reservaciontour">Reservacion tour</a>
-						</li>
-					<?php endif ?>
-
-					<?php if ($_GET["pagina"] == "ingreso"): ?>
-						<li class="active">
-							<a  href="index.php?pagina=ingreso">Ingreso</a>
-						</li>
-
-					<?php else: ?>
-
-						<li class="">
-							<a href="index.php?pagina=ingreso">Ingreso</a>
-						</li>
-						
-					<?php endif ?>
 
 					<?php if ($_GET["pagina"] == "principal"): ?>
 						<li class="active">

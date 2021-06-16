@@ -163,7 +163,7 @@ class ModeloPaginas{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT r.*, DATE_FORMAT(t.fecha_inicio,'%d-%m-%Y') as fecha_inicio, DATE_FORMAT(t.fecha_fin,'%d-%m-%Y') as fecha_fin FROM $tabla r INNER JOIN tour_provincia t on r.fk_tour_provincia = t.pk_tour_provincia INNER JOIN estado_pago e on r.fk_estado_pago = e.pk_id_estado WHERE fk_cliente = $idcliente AND WHERE $item = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT r.*, DATE_FORMAT(t.fecha_inicio,'%d-%m-%Y') as fecha_inicio, DATE_FORMAT(t.fecha_fin,'%d-%m-%Y') as fecha_fin FROM $tabla r INNER JOIN tour_provincia t on r.fk_tour_provincia = t.pk_tour_provincia INNER JOIN estado_pago e on r.fk_estado_pago = e.pk_id_estado WHERE fk_cliente = $idcliente AND $item = :$item");
 			
 			$stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
 

@@ -24,7 +24,9 @@
 			</div>
 
 		</div>
-
+		<div>
+		<a href="index.php?pagina=registrocliente">¿Eres nuevo? Registrate</a>
+		</div>
 		<?php 
 
 		$ingreso = new ControladorPaginas();
