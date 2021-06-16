@@ -1,4 +1,5 @@
 
+	<h3 class="heading text-capitalize text-center"> Registro</h3>
 	<form  method="post" id="formulario" onsubmit="return validacionregistrocliente()">
 
 			<label for="nombre">Nombre:</label><input type="text" class="form-control"  id="nombre" name="registroNombre">
