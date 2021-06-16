@@ -162,7 +162,7 @@ class ControladorPaginas{
 
 					}
 
-					window.location = "index.php?pagina=tourprovincia";
+					window.location = "index.php?pagina=principal";
 
 				</script>';
 

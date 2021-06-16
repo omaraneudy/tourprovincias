@@ -186,11 +186,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						$_GET["pagina"] == "salir"||
 						$_GET["pagina"] == "pruebas"||
 						$_GET["pagina"] == "reservacioncliente"||
+						$_GET["pagina"] == "empleado"||
 						$_GET["pagina"] == "registrartour"||
 						$_GET["pagina"] == "principal"||
 						$_GET["pagina"] == "cuenta"||
 						$_GET["pagina"] == "admin"||
 						$_GET["pagina"] == "cliente"||
+						$_GET["pagina"] == "tour"||
 						$_GET["pagina"] == "registrocliente"){
 
 							include "paginas/".$_GET["pagina"].".php";

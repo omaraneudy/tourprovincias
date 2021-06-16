@@ -1,10 +1,8 @@
 <?php
 
-$empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
-
+$tourprovincia = ControladorPaginas::ctrSeleccionarTour(null, null);
 
 ?>
-
 <div class="container-fluid">
     <div class="row flex-nowrap">
         
@@ -44,23 +42,29 @@ $empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
                 <!--AGREGADO-->
 
                 <DIV>
-                <h3 class="heading text-capitalize text-center">Empleados</h3>
+                <h3 class="heading text-capitalize text-center">Tours</h3>
 				<table>
 <tr>
 		<thead>
-			<th><form method="post">
-					<label>Buscar por nombre</label>
-					<input type="text" name="nombreEmpleado">
+		
+                <th><form method="post">
+                <label>Buscar por provincia</label>
+			<select name="provincia">
+            <option value="" ></option>
+            <?php foreach($provincias as $prov):?>
+            <option value ="<?php echo $prov["pk_id_provincia"];?>"><?php echo $prov["nombre_provincia"]; ?></option>
+            <?php endforeach ?>
+            </select><br>
 					<button type="submit"  >Buscar</button>
 
 					<?php
-						if(isset($_POST["nombreEmpleado"]) && $_POST["nombreEmpleado"]!= null)
+						if(isset($_POST["provincia"]) && $_POST["provincia"]!= null)
 						{
-							$nombreempleado = $_POST["nombreEmpleado"];
-							$empleados = ControladorPaginas::ctrSeleccionarEmpleado("nombre",$nombreempleado);
+							$provincia = $_POST["provincia"];
+							$tourprovincia = ControladorPaginas::ctrSeleccionarTour("fk_provincia",$provincia);
 						}
 						else{
-							$empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
+							$tourprovincia = ControladorPaginas::ctrSeleccionarTour(null, null);
 
 						}
 						
@@ -68,13 +72,15 @@ $empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
 					?>
 
 				</form>	
+
+
 			</th>
 			<th>  </th>
 			<th>  </th>
 			<th>  </th>
 			<th>  </th>
 			<th>  </th>
-			<th><a href="index.php?pagina=registrarempleado">Nuevo</a></th>
+			<th><a href="index.php?pagina=registrartour" class="btn btn-success">Agregar nuevo Tour</a></th>
 		</thead>
 		</tr>
 		</table>
@@ -94,11 +100,11 @@ $empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
 
 	<tbody>
 
-	<?php foreach ($empleados as $emp): ?>
-
+	<?php foreach ($tourprovincia as $tour): ?>
+        "SELECT DATEDIFF(t.fecha_fin, t.fecha_inicio) As duracion, t.pk_tour_provincia, t.descripcion, t.fecha_inicio, t.fecha_fin, p.nombre_provincia, t.precio, t.ruta_imagen, t.detalle_tour  FROM $tabla t inner join provincia p on t.fk_provincia = p.pk_id_provincia WHERE $item = :$item ORDER BY t.pk_tour_provincia DESC");
 		<tr>
-			<td><?php echo $emp["pk_id_empleado"]; ?></td>
-			<td><?php echo $emp["nombre"]; ?></td>
+			<td><?php echo $tour["pk_tour_provincia"]; ?></td>
+			<td><?php echo $emp["nombre_provincia"]; ?></td>
 			<td><?php echo $emp["apellido"]; ?></td>
 			<td><?php echo $emp["correo"]; ?></td>
             <td><?php echo $emp["nombre_cargo"]; ?></td>
@@ -106,7 +112,7 @@ $empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
             <td> 
 			<div class="btn-group">
 			<div>
-			<a href="index.php?pagina=editarempleado&id=<?php echo $emp["pk_id_empleado"]; ?>" class="btn btn-warning" >Editar</a>
+			<a href="index.php?pagina=editartour&id=<?php echo $emp["pk_tour_provincia"]; ?>" class="btn btn-warning" >Editar</a>
             </div>
 			<form method="post">
 

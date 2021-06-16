@@ -10,13 +10,17 @@
 
                     </li>
                     <li class="nav-item">
-                        <a href="index.php?pagina=registrartour" class="nav-link align-middle px-0">
+                        <a href="index.php?pagina=tour" class="nav-link align-middle px-0">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Tours</span>
                         </a>
                     </li>
                     <li>
                         <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></a>
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Reservaciones</span></a>
+                    </li>
+                    <li>
+                        <a href="index.php?pagina=empleado" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Empleados</span> </a>
                     </li>
                     <li>
                         <a href="#" class="nav-link px-0 align-middle">
