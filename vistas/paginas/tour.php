@@ -104,19 +104,19 @@ $tourprovincia = ControladorPaginas::ctrSeleccionarTour(null, null);
         "SELECT DATEDIFF(t.fecha_fin, t.fecha_inicio) As duracion, t.pk_tour_provincia, t.descripcion, t.fecha_inicio, t.fecha_fin, p.nombre_provincia, t.precio, t.ruta_imagen, t.detalle_tour  FROM $tabla t inner join provincia p on t.fk_provincia = p.pk_id_provincia WHERE $item = :$item ORDER BY t.pk_tour_provincia DESC");
 		<tr>
 			<td><?php echo $tour["pk_tour_provincia"]; ?></td>
-			<td><?php echo $emp["nombre_provincia"]; ?></td>
-			<td><?php echo $emp["apellido"]; ?></td>
-			<td><?php echo $emp["correo"]; ?></td>
-            <td><?php echo $emp["nombre_cargo"]; ?></td>
-			<td><?php echo $emp["nombre_usuario"]; ?></td>
+			<td><?php echo $tour["nombre_provincia"]; ?></td>
+			<td><?php echo $tour["duracion"]; ?> día(s)</td>
+			<td><?php echo $emp["precio"]; ?></td>
+            <td><?php echo $emp["fecha_inicio"]; ?></td>
+			<td><?php echo $emp["fecha_fin"]; ?></td>
             <td> 
 			<div class="btn-group">
 			<div>
-			<a href="index.php?pagina=editartour&id=<?php echo $emp["pk_tour_provincia"]; ?>" class="btn btn-warning" >Editar</a>
+			<a href="index.php?pagina=editartour&id=<?php echo $tour["pk_tour_provincia"]; ?>" class="btn btn-warning" >Editar</a>
             </div>
 			<form method="post">
 
-                <input type="hidden" value="<?php echo $value["id"]; ?>" name="eliminarRegistro">
+                <input type="hidden" value="<?php echo $value["id"]; ?>" name="">
 
                 <button type="submit" class="btn btn-secondary">Deshabilitar</button>
 
