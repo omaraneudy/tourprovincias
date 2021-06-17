@@ -112,7 +112,7 @@ class ControladorPaginas{
 	static public function ctrConsultaClienteReservacion($item, $valor,$cli){
 
 		$tabla = "reservacion_cliente";
-		$idcliente = $cli
+		$idcliente = $cli;
 
 		$respuesta = ModeloPaginas::mdlConsultaClienteReservacion($tabla, $item, $valor, $idcliente);
 
@@ -126,7 +126,7 @@ class ControladorPaginas{
 	static public function ctrConsultaReservacion($item, $valor,$cli){
 
 		$tabla = "reservacion_cliente";
-		$idcliente = $cli
+		$idcliente = $cli;
 
 		$respuesta = ModeloPaginas::mdlConsultaReservacion($tabla, $item, $valor, $idcliente);
 
