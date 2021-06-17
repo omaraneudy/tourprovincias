@@ -109,10 +109,10 @@ class ControladorPaginas{
 
 	}
 
-	static public function ctrConsultaClienteReservacion($item, $valor,$cli){
+	static public function ctrConsultaClienteReservacion($item, $valor){
 
 		$tabla = "reservacion_cliente";
-		$idcliente = $cli;
+		$idcliente = $_SESSION["idCliente"];
 
 		$respuesta = ModeloPaginas::mdlConsultaClienteReservacion($tabla, $item, $valor, $idcliente);
 
@@ -123,7 +123,7 @@ class ControladorPaginas{
 	}
 
 
-	static public function ctrConsultaReservacion($item, $valor,$cli){
+	/*static public function ctrConsultaReservacion($item, $valor,$cli){
 
 		$tabla = "reservacion_cliente";
 		$idcliente = $cli;
@@ -142,7 +142,7 @@ class ControladorPaginas{
 
 		return $respuesta;
 
-	}
+	}*/
 
 	static public function ctrSeleccionarTipoUsuario($item, $valor){
 

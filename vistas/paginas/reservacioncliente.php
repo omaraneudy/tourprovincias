@@ -19,7 +19,7 @@ if(!isset($_SESSION["validarIngreso"])){
 }
 
 
-$reservacion = ControladorPaginas::ctrConsultaClienteReservacion(null, null,$_SESSION["idCliente"]);
+$reservacion = ControladorPaginas::ctrConsultaClienteReservacion(null, null);
 $provincias = ControladorPaginas::ctrListarProvincia(null,null);
 
 ?>
@@ -39,14 +39,7 @@ $provincias = ControladorPaginas::ctrListarProvincia(null,null);
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Mis reservaciones</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
-                    </li>
+
                 </ul>
                 <hr>
             </div>

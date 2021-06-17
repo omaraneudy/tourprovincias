@@ -209,7 +209,7 @@ class ModeloPaginas{
 
 	}
 
-	static public function mdlConsultaReservacion($tabla, $item, $valor, $idcliente){
+	/*static public function mdlConsultaReservacion($tabla, $item, $valor, $idcliente){
 
 		if($item == null && $valor == null){
 
@@ -234,7 +234,7 @@ class ModeloPaginas{
 
 		$stmt = null;
 
-	}
+	}*/
 
 	static public function mdlEstadoReservacion($tabla, $datos){
 	
