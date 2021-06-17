@@ -124,12 +124,12 @@ class ModeloPaginas{
 		$stmt = null;	
 
 	}
-	static public function mdlRegistroTour($tabla, $datos){
+	static public function mdlEditarTour($tabla, $datos){
 
 		
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set fk_provincia = :fk_provincia descripcion, fecha_inicio, fecha_fin, precio, ruta_imagen, detalle_tour, fk_estado_tour) VALUES (:fk_provincia, :descripcion, :fecha_inicio, :fecha_fin, :precio, :ruta_imagen, :detalle_tour, :fk_estado_tour)");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla set fk_provincia = :fk_provincia, descripcion = :descripcion, fecha_inicio = :fecha_inicio, fecha_fin =  :fecha_fin, precio = :precio, ruta_imagen = :ruta_imagen, detalle_tour = :detalle_tour, fk_estado_tour = :fk_estado_tour WHERE pk_tour_provincia = :id");
 
-		
+		$stmt->bindParam(":id", $datos["ideditar"], PDO::PARAM_STR);
 		$stmt->bindParam(":fk_provincia", $datos["fk_provincia"], PDO::PARAM_STR);
 		$stmt->bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
 		$stmt->bindParam(":fecha_inicio", $datos["fecha_inicio"], PDO::PARAM_STR);
@@ -138,6 +138,7 @@ class ModeloPaginas{
 		$stmt->bindParam(":ruta_imagen", $datos["ruta_imagen"], PDO::PARAM_STR);
 		$stmt->bindParam(":detalle_tour", $datos["detalle_tour"], PDO::PARAM_STR);
 		$stmt->bindParam(":fk_estado_tour", $datos["fk_estado_tour"], PDO::PARAM_STR);
+		
 
 		if($stmt->execute()){
 
@@ -186,6 +187,33 @@ class ModeloPaginas{
 		if($item == null && $valor == null){
 
 			$stmt = Conexion::conectar()->prepare("SELECT r.*, DATE_FORMAT(t.fecha_inicio,'%d-%m-%Y') as fecha_inicio, DATE_FORMAT(t.fecha_fin,'%d-%m-%Y') as fecha_fin, DATE_FORMAT(r.fecha_reservacion,'%d-%m-%Y') as fecha_reservacion, e.estado, p.nombre_provincia, t.precio FROM $tabla r INNER JOIN tour_provincia t on r.fk_tour_provincia = t.pk_tour_provincia INNER JOIN estado_pago e on r.fk_estado_pago = e.pk_id_estado inner join provincia p on t.fk_provincia = p.pk_id_provincia WHERE fk_cliente = $idcliente");
+			
+			$stmt->execute();
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT r.*, DATE_FORMAT(t.fecha_inicio,'%d-%m-%Y') as fecha_inicio, DATE_FORMAT(t.fecha_fin,'%d-%m-%Y') as fecha_fin, r.fk_tour_provincia, t.fk_provincia, p.nombre_provincia, e.estado FROM $tabla r INNER JOIN tour_provincia t on r.fk_tour_provincia = t.pk_tour_provincia INNER JOIN estado_pago e on r.fk_estado_pago = e.pk_id_estado inner join provincia p on t.fk_provincia = p.pk_id_provincia WHERE fk_cliente = $idcliente AND $item = :$item");
+			
+			$stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt->execute();
+
+			return $stmt -> fetchAll();
+		}
+
+		$stmt->close();
+
+		$stmt = null;
+
+	}
+
+	static public function mdlConsultaReservacion($tabla, $item, $valor, $idcliente){
+
+		if($item == null && $valor == null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT r.*, DATE_FORMAT(t.fecha_inicio,'%d-%m-%Y') as fecha_inicio, DATE_FORMAT(t.fecha_fin,'%d-%m-%Y') as fecha_fin, DATE_FORMAT(r.fecha_reservacion,'%d-%m-%Y') as fecha_reservacion, e.estado, p.nombre_provincia, t.precio FROM $tabla r INNER JOIN tour_provincia t on r.fk_tour_provincia = t.pk_tour_provincia INNER JOIN estado_pago e on r.fk_estado_pago = e.pk_id_estado inner join provincia p on t.fk_provincia = p.pk_id_provincia");
 			
 			$stmt->execute();
 
@@ -269,6 +297,33 @@ class ModeloPaginas{
 		$stmt->close();
 
 		$stmt = null;	
+
+	}
+
+	static public function mdlConsultaCliente($tabla, $item, $valor){
+
+		if($item == null && $valor == null){
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+			
+			$stmt->execute();
+
+			return $stmt -> fetchAll();
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+			
+			$stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+			$stmt->execute();
+
+			return $stmt -> fetch();
+		}
+
+		$stmt->close();
+
+		$stmt = null;
 
 	}
 

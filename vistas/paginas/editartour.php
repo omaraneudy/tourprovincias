@@ -74,7 +74,7 @@ $provincias = ControladorPaginas::ctrListarProvincia(null,null);
 </select><br>
 <label for="">Descripción</label><textarea class="form-control" value="" name="actualizarDescripcion"><?php echo $tourprovincia["descripcion"];?></textarea>    
 
-<label >Fecha inicio de tour</label><input type="date" class="form-control" value="<?php echo $tourprovincia["fecha_inicio"];?>"name="actualizararInicio">
+<label >Fecha inicio de tour</label><input type="date" class="form-control" value="<?php echo $tourprovincia["fecha_inicio"];?>"name="actualizarInicio">
 <label >Fecha final de tour</label><input type="date" class="form-control" value="<?php echo $tourprovincia["fecha_fin"];?>" name="actualizarFin">
 
 <label for="">Precio</label><input type="number" class="form-control" value="<?php echo $tourprovincia["precio"];?>" name="actualizarPrecio">
@@ -86,9 +86,9 @@ $provincias = ControladorPaginas::ctrListarProvincia(null,null);
 
 <?php 
 
-$registrotour = ControladorPaginas::ctrRegistroTour();
+$editartour = ControladorPaginas::ctrEditarTour();
 
-if($registrotour == "ok"){
+if($editartour == "ok"){
 
 echo '<script>
 
@@ -100,7 +100,7 @@ echo '<script>
 
 </script>';
 
-echo '<div class="alert alert-success">Se ha registrado correctamente</div>';
+echo '<div class="alert alert-success">Se ha actualizado correctamente</div>';
 
 }
 

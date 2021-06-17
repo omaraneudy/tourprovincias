@@ -69,7 +69,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						
 					<?php endif ?>
 
-					<?php if (!isset($_SESSION["validarIngreso"])): ?>
+					<?php if (isset($_SESSION["validarIngreso"])): ?>
 					<?php if ($_GET["pagina"] == "reservacioncliente"): ?>
 
 					<?php echo "<li class=\"active\"> ";?>

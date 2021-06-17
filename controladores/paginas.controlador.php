@@ -53,11 +53,11 @@ class ControladorPaginas{
 
 	static public function ctrEditarTour(){
 
-		if(isset($_POST["actualizarProvincia"]) && isset($_POST["actualizarPrecio"])){
+		if(isset($_POST["actualizarProvincia"]) && isset($_POST["actualizarPrecio"]) && isset($_POST["idTourEditar"])){
 
 			$tabla = "tour_provincia";
 
-			$datos = array("fk_provincia" => $_POST["actualizarProvincia"], "descripcion" => $_POST["actualizarDescripcion"],"fecha_inicio" => date("Y-m-d",strtotime($_POST["actualizarInicio"])),"fecha_fin" => date("Y-m-d",strtotime($_POST["actualizarFin"])), "precio" => $_POST["actualizarPrecio"],"ruta_imagen" => "images/".$_POST["actualizarImagen"],"detalle_tour" => $_POST["actualizarDetalle"], "fk_estado_tour" => 2);
+			$datos = array("ideditar" => $_POST["idTourEditar"], "fk_provincia" => $_POST["actualizarProvincia"], "descripcion" => $_POST["actualizarDescripcion"],"fecha_inicio" => date("Y-m-d",strtotime($_POST["actualizarInicio"])),"fecha_fin" => date("Y-m-d",strtotime($_POST["actualizarFin"])), "precio" => $_POST["actualizarPrecio"],"ruta_imagen" => "images/".$_POST["actualizarImagen"],"detalle_tour" => $_POST["actualizarDetalle"], "fk_estado_tour" => 2);
 
 			$respuesta = ModeloPaginas::mdlEditarTour($tabla, $datos);
 
@@ -109,17 +109,40 @@ class ControladorPaginas{
 
 	}
 
-	static public function ctrConsultaClienteReservacion($item, $valor){
+	static public function ctrConsultaClienteReservacion($item, $valor,$cli){
 
 		$tabla = "reservacion_cliente";
-		$idcliente = $_SESSION["idCliente"];
+		$idcliente = $cli
 
 		$respuesta = ModeloPaginas::mdlConsultaClienteReservacion($tabla, $item, $valor, $idcliente);
 
 		return $respuesta;
 
+
+
 	}
 
+
+	static public function ctrConsultaReservacion($item, $valor,$cli){
+
+		$tabla = "reservacion_cliente";
+		$idcliente = $cli
+
+		$respuesta = ModeloPaginas::mdlConsultaReservacion($tabla, $item, $valor, $idcliente);
+
+		return $respuesta;
+
+	}
+
+	static public function ctrConsultaCliente($item, $valor){
+
+		$tabla = "cliente";
+
+		$respuesta = ModeloPaginas::mdlConsultaCliente($tabla, $item, $valor);
+
+		return $respuesta;
+
+	}
 
 	static public function ctrSeleccionarTipoUsuario($item, $valor){
 

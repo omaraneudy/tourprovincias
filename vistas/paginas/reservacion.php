@@ -1,6 +1,6 @@
 <?php
 
-$empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
+$clientes = ControladorPaginas::ctrConsultaCliente(null, null);
 
 
 ?>
@@ -28,10 +28,6 @@ $empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
                         <a href="index.php?pagina=empleado" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Empleados</span> </a>
                     </li>
-                    <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
-                    </li>
                 </ul>
                 <hr>
             </div>
@@ -54,13 +50,16 @@ $empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
 					<button type="submit"  >Buscar</button>
 
 					<?php
-						if(isset($_POST["nombreEmpleado"]) && $_POST["nombreEmpleado"]!= null)
+						if(isset($_POST["nombreCliente"]) && $_POST["nombreCliente"]!= null)
 						{
-							$nombreempleado = $_POST["nombreEmpleado"];
-							$empleados = ControladorPaginas::ctrSeleccionarEmpleado("nombre",$nombreempleado);
+							$nombrecliente = $_POST["nombreCliente"];
+							$clientes = ControladorPaginas::ctrConsultaCliente("nombre",$nombrecliente);
+                            $reservaciones = ControladorPaginas::ctrConsultaReservacion("pk_id_cliente", null,$clientes["pk_id_cliente"]);
 						}
 						else{
-							$empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
+							$clientes = ControladorPaginas::ctrConsultaCliente(null, null);
+                             $reservaciones = ControladorPaginas::ctrConsultaReservacion(null,null,null,null);
+                            
 
 						}
 						
@@ -74,7 +73,7 @@ $empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
 			<th>  </th>
 			<th>  </th>
 			<th>  </th>
-			<th><a href="index.php?pagina=registrarempleado">Nuevo</a></th>
+			<th><a href="index.php?pagina=registrocliente">Nuevo cliente</a></th>
 		</thead>
 		</tr>
 		</table>
@@ -87,8 +86,12 @@ $empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
 			<th>Nombre</th>
 			<th>Apellido</th>
 			<th>Correo</th>
-            <th>Cargo</th>
 			<th>Usuario</th>
+            <th>Nombre</th>
+			<th>Apellido</th>
+			<th>Correo</th>
+			<th>Usuario</th>
+            
 		</tr>
 	</thead>
 

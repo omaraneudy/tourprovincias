@@ -19,7 +19,7 @@ if(!isset($_SESSION["validarIngreso"])){
 }
 
 
-$reservacion = ControladorPaginas::ctrConsultaClienteReservacion(null, null);
+$reservacion = ControladorPaginas::ctrConsultaClienteReservacion(null, null,$_SESSION["idCliente"]);
 $provincias = ControladorPaginas::ctrListarProvincia(null,null);
 
 ?>
