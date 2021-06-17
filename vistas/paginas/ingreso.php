@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center text-center">
 
-	<form class="p-5 bg-light" method="post" onsumit="return validacion()">
+	<form  method="post" class="p-5 bg-light" id="formulario" onsumit="return validacionInicio()">
 
 		<div class="form-group">
 
@@ -27,6 +27,7 @@
 		<div>
 		<a href="index.php?pagina=registrocliente">¿Eres nuevo? Registrate</a>
 		</div>
+		
 		<?php 
 
 		$ingreso = new ControladorPaginas();
@@ -37,6 +38,8 @@
 		<button type="submit" >Ingresar</button>
 
 	</form>
-	<script src="script/script.js"></script>
+	
 
 </div>
+
+<script src="script/script.js"></script>

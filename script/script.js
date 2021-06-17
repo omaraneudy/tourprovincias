@@ -1,3 +1,21 @@
+function validacionInicio() {
+
+  usuario = document.getElementById("usuario").value;
+  contrasena = document.getElementById("contrasena").value;
+
+  if( usuario == null || usuario.length == 0 || /^\s+$/.test(usuario) ) {
+      alert('[ERROR] El campo Usuario no debe estar vacio');
+      return false;
+  }
+  if( contrasena == null || contrasena.length == 0 || /^\s+$/.test(contrasena) ) {
+      alert('[ERROR] El campo Contraseña no debe estar vacio');
+      return false;
+  }
+
+
+  return true;
+}
+
 function validacion() {
     nombre = document.getElementById("nombre").value;
     cedula = document.getElementById("cedula").value;
@@ -60,6 +78,7 @@ function validacion() {
       if( !(/^\d{11}$/.test(cedula))  && cedula.length > 11 || cedula.length < 11) {
         alert('[ERROR] Debe insertar 11 dígitos en Cédula sin separarlos');
         return false;
-      ]
+      }
     return true;
   }
+
