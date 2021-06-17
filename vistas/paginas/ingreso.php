@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center text-center">
 
-	<form  method="post" class="p-5 bg-light" id="formulario" onsumit="return validacionInicio()">
+	<form  method="post" class="p-5 bg-light" id="formulario" onsubmit="return validacionInicio()">
 
 		<div class="form-group">
 
