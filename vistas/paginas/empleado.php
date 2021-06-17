@@ -16,11 +16,14 @@ $empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
 
                     </li>
                     <li class="nav-item">
-                        <a href="index.php?pagina=registrartour" class="nav-link align-middle px-0">
+                        <a href="index.php?pagina=tour" class="nav-link align-middle px-0">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Tours</span>
                         </a>
                     </li>
-
+					<li>
+                        <a href="index.php?pagina=reservacion" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Reservaciones</span></a>
+                    </li>
                     <li>
                         <a href="index.php?pagina=empleado" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Empleados</span> </a>
@@ -68,7 +71,7 @@ $empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
 			<th>  </th>
 			<th>  </th>
 			<th>  </th>
-			<th><a href="index.php?pagina=registrarempleado">Nuevo</a></th>
+			<!--<th><a href="index.php?pagina=registrarempleado">Nuevo</a></th>-->
 		</thead>
 		</tr>
 		</table>
@@ -100,7 +103,7 @@ $empleados = ControladorPaginas::ctrSeleccionarEmpleado(null, null);
             <td> 
 			<div class="btn-group">
 			<div>
-			<a href="index.php?pagina=editarempleado&id=<?php echo $emp["pk_id_empleado"]; ?>" class="btn btn-warning" >Editar</a>
+			<!--<a href="index.php?pagina=editarempleado&id=<?php echo $emp["pk_id_empleado"]; ?>" class="btn btn-warning" >Editar</a>-->
             </div>
 			</div>
 			</td>

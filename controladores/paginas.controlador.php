@@ -55,9 +55,41 @@ class ControladorPaginas{
 
 		if(isset($_POST["actualizarProvincia"]) && isset($_POST["actualizarPrecio"]) && isset($_POST["idTourEditar"])){
 
+			if($_POST["actualizarInicio"] != ""){			
+
+				$inicio = $_POST["actualizarInicio"];
+
+			}else{
+
+				$inicio = $_POST["inicioActual"];
+			}
+			if($_POST["actualizarFin"] != ""){			
+
+				$fin = $_POST["actualizarFin"];
+
+			}else{
+
+				$fin = $_POST["finActual"];
+			}
+			if($_POST["actualizarImagen"] != ""){			
+
+				$imagen = $_POST["actualizarImagen"];
+
+			}else{
+
+				$imagen = $_POST["imagenActual"];
+			}
+			if($_POST["actualizarEstado"] != ""){			
+
+				$estado = $_POST["actualizarEstado"];
+
+			}else{
+
+				$estado = $_POST["estadoActual"];
+			}
 			$tabla = "tour_provincia";
 
-			$datos = array("ideditar" => $_POST["idTourEditar"], "fk_provincia" => $_POST["actualizarProvincia"], "descripcion" => $_POST["actualizarDescripcion"],"fecha_inicio" => date("Y-m-d",strtotime($_POST["actualizarInicio"])),"fecha_fin" => date("Y-m-d",strtotime($_POST["actualizarFin"])), "precio" => $_POST["actualizarPrecio"],"ruta_imagen" => "images/".$_POST["actualizarImagen"],"detalle_tour" => $_POST["actualizarDetalle"], "fk_estado_tour" => 2);
+			$datos = array("ideditar" => $_POST["idTourEditar"], "fk_provincia" => $_POST["actualizarProvincia"], "descripcion" => $_POST["actualizarDescripcion"],"fecha_inicio" => date("Y-m-d",strtotime($inicio)),"fecha_fin" => date("Y-m-d",strtotime($fin)), "precio" => $_POST["actualizarPrecio"],"ruta_imagen" => "images/".$imagen,"detalle_tour" => $_POST["actualizarDetalle"], "fk_estado_tour" => $estado);
 
 			$respuesta = ModeloPaginas::mdlEditarTour($tabla, $datos);
 
@@ -97,6 +129,23 @@ class ControladorPaginas{
 
 		}
 	}
+	static public function ctrEstadoTour(){
+
+		if(isset($_POST["idTour"]) && isset($_POST["estadoTour"])){
+
+			$tabla = "tour_provincia";
+
+			$datos = array("id_tour" => $_POST["idTour"],"fk_estado_tour" => $_POST["estadoTour"]);
+
+			$respuesta = ModeloPaginas::mdlEstadotour($tabla, $datos);
+
+			return $respuesta;
+
+		}
+	}
+
+
+
 
 	//mostrar tours disponibles
 	static public function ctrSeleccionarTour($item, $valor){
@@ -123,12 +172,11 @@ class ControladorPaginas{
 	}
 
 
-	/*static public function ctrConsultaReservacion($item, $valor,$cli){
+	static public function ctrConsultaReservacion($item, $valor){
 
 		$tabla = "reservacion_cliente";
-		$idcliente = $cli;
-
-		$respuesta = ModeloPaginas::mdlConsultaReservacion($tabla, $item, $valor, $idcliente);
+		
+		$respuesta = ModeloPaginas::mdlConsultaReservacion($tabla, $item, $valor);
 
 		return $respuesta;
 
@@ -142,7 +190,7 @@ class ControladorPaginas{
 
 		return $respuesta;
 
-	}*/
+	}
 
 	static public function ctrSeleccionarTipoUsuario($item, $valor){
 
@@ -178,7 +226,7 @@ class ControladorPaginas{
 	//iniciar sesión
 	public function ctrIngreso(){
 
-		if(isset($_POST["ingresoUsuario"]) && $_POST["ingresoUsuario"]!= null && $_POST["ingresoContrasena"]!= null){
+		if(isset($_POST["ingresoUsuario"]) && $_POST["ingresoUsuario"]!= null && isset($_POST["ingresoContrasena"]) && $_POST["ingresoContrasena"]!= null){
 
 			$tabla = "usuario";
 			$item = "nombre_usuario";

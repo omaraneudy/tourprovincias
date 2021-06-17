@@ -19,7 +19,10 @@ $provincias = ControladorPaginas::ctrListarProvincia(null,null);
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Tours</span>
                         </a>
                     </li>
-
+                    <li>
+                        <a href="index.php?pagina=reservacion" class="nav-link px-0 align-middle">
+                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Reservaciones</span> </a>
+                    </li>
                     <li>
                         <a href="index.php?pagina=empleado" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Empleados</span> </a>
@@ -111,17 +114,20 @@ $provincias = ControladorPaginas::ctrListarProvincia(null,null);
             </div>
 			<form method="post">
 
-                <input type="hidden" value="<?php echo $tour["pk_tour_provincia"]; ?>" name="deshabilitarTour">
-
-                <button type="submit" class="btn btn-secondary">Deshabilitar</button>
-
-                <?php
-    
-                    //$eliminar = new ControladorPaginas();
-                    //$eliminar -> ctrEliminarRegistro();
-        
+                <input type="hidden" value="<?php echo $tour["pk_tour_provincia"]; ?>" name="idTour">
+                <?php $cambiar = ControladorPaginas::ctrEstadoTour();
+                
+                
                 ?>
 
+                <?php if($tour["fk_estado_tour"] == 1):?>
+                <input type="hidden" value="2" name="estadoTour">
+                <button type="submit" class="btn btn-secondary">Deshabilitar</button>
+                <?php elseif($tour["fk_estado_tour"] == 2):?>
+                    <input type="hidden" value="1" name="estadoTour">
+                <button type="submit" class="btn btn-success">Habilitar</button>
+                <?php endif?>
+               
 			</form>	
 			</div>
 			</td>

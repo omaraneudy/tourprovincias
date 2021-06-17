@@ -1,4 +1,4 @@
-function validacionregistrocliente() {
+function validacion() {
     nombre = document.getElementById("nombre").value;
     cedula = document.getElementById("cedula").value;
     apellido = document.getElementById("apellido").value;

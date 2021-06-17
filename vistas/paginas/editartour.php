@@ -40,17 +40,14 @@ $provincias = ControladorPaginas::ctrListarProvincia(null,null);
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle">
+                        <a href="index.php?pagina=reservacion" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Reservaciones</span></a>
                     </li>
                     <li>
                         <a href="index.php?pagina=empleado" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Empleados</span> </a>
                     </li>
-                    <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span> </a>
-                    </li>
+
                 </ul>
                 <hr>
             </div>
@@ -74,14 +71,27 @@ $provincias = ControladorPaginas::ctrListarProvincia(null,null);
 </select><br>
 <label for="">Descripción</label><textarea class="form-control" value="" name="actualizarDescripcion"><?php echo $tourprovincia["descripcion"];?></textarea>    
 
-<label >Fecha inicio de tour</label><input type="date" class="form-control" value="<?php echo $tourprovincia["fecha_inicio"];?>"name="actualizarInicio">
-<label >Fecha final de tour</label><input type="date" class="form-control" value="<?php echo $tourprovincia["fecha_fin"];?>" name="actualizarFin">
+<label >Fecha inicio de tour</label><input type="date" class="form-control" value=""name="actualizarInicio">
+<label >Fecha final de tour</label><input type="date" class="form-control" value="" name="actualizarFin">
 
 <label for="">Precio</label><input type="number" class="form-control" value="<?php echo $tourprovincia["precio"];?>" name="actualizarPrecio">
 
-<label >Seleccionar imagen:</label><input type="file" class="form-control" value="<?php echo $tourprovincia["ruta_imagen"];?>" name="actualizarImagen">
+<label >Seleccionar imagen:</label><br>
+<label>Imagen actual: <?php echo $tourprovincia["ruta_imagen"];?></label><br>
+<input type="file" class="form-control"  name="actualizarImagen">
 <label for="">Detalles del tour</label><textarea class="form-control" value="" name="actualizarDetalle"><?php echo $tourprovincia["detalle_tour"];?></textarea> 
+<label>Estado del tour: <?php echo $tourprovincia["estado_tour"];?></label>
+<select name="actualizarEstado">
+<option value=""></option>
+<option value="1">Activo</option>
+<option value="2">Inactivo</option>
+</select>
 <input type="hidden" value="<?php echo $_GET["idp"];?>" name="idTourEditar">
+<input type="hidden" value="<?php echo $tourprovincia["fecha_inicio"];?>" name="inicioActual">
+<input type="hidden" value="<?php echo $tourprovincia["fecha_fin"];?>" name="finActual">
+<input type="hidden" value="<?php echo $tourprovincia["ruta_imagen"];?>" name="imagenActual">
+<input type="hidden" value="<?php echo $tourprovincia["fk_estado_tour"];?>" name="estadoActual">
+
 	<!-- <input type="hidden" name="registroTipoC" value="<?php //$tipousuario["pk_id_tipo"];?>">-->
 
 <?php 

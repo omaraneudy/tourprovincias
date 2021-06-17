@@ -209,11 +209,17 @@ class ModeloPaginas{
 
 	}
 
-	/*static public function mdlConsultaReservacion($tabla, $item, $valor, $idcliente){
+	static public function mdlConsultaReservacion($tabla, $item, $valor){
 
 		if($item == null && $valor == null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT r.*, DATE_FORMAT(t.fecha_inicio,'%d-%m-%Y') as fecha_inicio, DATE_FORMAT(t.fecha_fin,'%d-%m-%Y') as fecha_fin, DATE_FORMAT(r.fecha_reservacion,'%d-%m-%Y') as fecha_reservacion, e.estado, p.nombre_provincia, t.precio FROM $tabla r INNER JOIN tour_provincia t on r.fk_tour_provincia = t.pk_tour_provincia INNER JOIN estado_pago e on r.fk_estado_pago = e.pk_id_estado inner join provincia p on t.fk_provincia = p.pk_id_provincia");
+			$stmt = Conexion::conectar()->prepare("SELECT r.*, DATE_FORMAT(t.fecha_inicio,'%d-%m-%Y') as fecha_inicio, 
+			DATE_FORMAT(t.fecha_fin,'%d-%m-%Y') as fecha_fin, DATE_FORMAT(r.fecha_reservacion,'%d-%m-%Y') as fecha_reservacion, 
+			e.estado, p.nombre_provincia, t.precio, c.pk_id_cliente, c.nombre, e.pk_id_estado FROM $tabla r 
+			INNER JOIN tour_provincia t on r.fk_tour_provincia = t.pk_tour_provincia 
+			INNER JOIN estado_pago e on r.fk_estado_pago = e.pk_id_estado 
+			inner join provincia p on t.fk_provincia = p.pk_id_provincia 
+			inner join cliente c on r.fk_cliente = c.pk_id_cliente");
 			
 			$stmt->execute();
 
@@ -221,7 +227,7 @@ class ModeloPaginas{
 
 		}else{
 
-			$stmt = Conexion::conectar()->prepare("SELECT r.*, DATE_FORMAT(t.fecha_inicio,'%d-%m-%Y') as fecha_inicio, DATE_FORMAT(t.fecha_fin,'%d-%m-%Y') as fecha_fin, r.fk_tour_provincia, t.fk_provincia, p.nombre_provincia, e.estado FROM $tabla r INNER JOIN tour_provincia t on r.fk_tour_provincia = t.pk_tour_provincia INNER JOIN estado_pago e on r.fk_estado_pago = e.pk_id_estado inner join provincia p on t.fk_provincia = p.pk_id_provincia WHERE fk_cliente = $idcliente AND $item = :$item");
+			$stmt = Conexion::conectar()->prepare("SELECT r.*, DATE_FORMAT(t.fecha_inicio,'%d-%m-%Y') as fecha_inicio, DATE_FORMAT(t.fecha_fin,'%d-%m-%Y') as fecha_fin, DATE_FORMAT(r.fecha_reservacion,'%d-%m-%Y') as fecha_reservacion, r.fk_tour_provincia, t.fk_provincia, e.pk_id_estado, p.nombre_provincia, e.estado, c.nombre FROM $tabla r INNER JOIN tour_provincia t on r.fk_tour_provincia = t.pk_tour_provincia INNER JOIN estado_pago e on r.fk_estado_pago = e.pk_id_estado inner join provincia p on t.fk_provincia = p.pk_id_provincia inner join cliente c on r.fk_cliente = c.pk_id_cliente WHERE $item = :$item");
 			
 			$stmt->bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -234,7 +240,7 @@ class ModeloPaginas{
 
 		$stmt = null;
 
-	}*/
+	}
 
 	static public function mdlEstadoReservacion($tabla, $datos){
 	
@@ -259,12 +265,35 @@ class ModeloPaginas{
 		$stmt = null;	
 
 	}
+	static public function mdlEstadoTour($tabla, $datos){
+	
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET fk_estado_tour = :estado_tour WHERE pk_tour_provincia = :id");
+
+		$stmt->bindParam(":estado_tour", $datos["fk_estado_tour"], PDO::PARAM_STR);
+		$stmt->bindParam(":id", $datos["id_tour"], PDO::PARAM_STR);
+
+
+		if($stmt->execute()){
+
+			return "ok";
+
+		}else{
+
+			print_r(Conexion::conectar()->errorInfo());
+
+		}
+
+		$stmt->close();
+
+		$stmt = null;	
+
+	}
 
 	static public function mdlSeleccionarTour($tabla, $item, $valor){
 
 		if($item == null && $valor == null){
 
-			$stmt = Conexion::conectar()->prepare("SELECT DATEDIFF(t.fecha_fin, t.fecha_inicio) As duracion, t.pk_tour_provincia, t.descripcion, DATE_FORMAT(t.fecha_inicio,'%d-%m-%Y') as fecha_inicio, DATE_FORMAT(t.fecha_fin,'%d-%m-%Y') as fecha_fin, p.nombre_provincia, t.precio, t.ruta_imagen, e.estado_tour FROM $tabla t inner join provincia p on t.fk_provincia = p.pk_id_provincia inner join estado_tour e on fk_estado_tour = pk_estado_tour ORDER BY t.pk_tour_provincia DESC");
+			$stmt = Conexion::conectar()->prepare("SELECT DATEDIFF(t.fecha_fin, t.fecha_inicio) As duracion, t.pk_tour_provincia, t.descripcion, DATE_FORMAT(t.fecha_inicio,'%d-%m-%Y') as fecha_inicio, DATE_FORMAT(t.fecha_fin,'%d-%m-%Y') as fecha_fin, p.nombre_provincia, t.precio, t.ruta_imagen,t.fk_estado_tour, e.estado_tour FROM $tabla t inner join provincia p on t.fk_provincia = p.pk_id_provincia inner join estado_tour e on fk_estado_tour = pk_estado_tour ORDER BY t.pk_tour_provincia DESC");
 			
 			$stmt->execute();
 

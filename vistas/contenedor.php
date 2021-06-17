@@ -189,6 +189,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						$_GET["pagina"] == "empleado"||
 						$_GET["pagina"] == "registrartour"||
 						$_GET["pagina"] == "principal"||
+						$_GET["pagina"] == "reservacion"||
 						$_GET["pagina"] == "cuenta"||
 						$_GET["pagina"] == "admin"||
 						$_GET["pagina"] == "cliente"||

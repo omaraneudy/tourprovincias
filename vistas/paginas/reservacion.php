@@ -1,7 +1,6 @@
 <?php
 
-$clientes = ControladorPaginas::ctrConsultaCliente(null, null);
-
+$reservaciones = ControladorPaginas::ctrConsultaReservacion(null, null);
 
 ?>
 
@@ -16,12 +15,12 @@ $clientes = ControladorPaginas::ctrConsultaCliente(null, null);
 
                     </li>
                     <li class="nav-item">
-                        <a href="index.php?pagina=registrartour" class="nav-link align-middle px-0">
+                        <a href="index.php?pagina=tour" class="nav-link align-middle px-0">
                             <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Tours</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle">
+                        <a href="index.php?pagina=reservacion" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Reservaciones</span></a>
                     </li>
                     <li>
@@ -40,25 +39,25 @@ $clientes = ControladorPaginas::ctrConsultaCliente(null, null);
                 <!--AGREGADO-->
 
                 <DIV>
-                <h3 class="heading text-capitalize text-center">Empleados</h3>
-				<table>
+                <h3 class="heading text-capitalize text-center">Reservaciones</h3>
+				<table class="table-sm">
 <tr>
 		<thead>
 			<th><form method="post">
-					<label>Buscar por nombre</label>
-					<input type="text" name="nombreEmpleado">
+					<label>Buscar cliente por id</label>
+					<input type="text" name="idCliente">
 					<button type="submit"  >Buscar</button>
 
 					<?php
-						if(isset($_POST["nombreCliente"]) && $_POST["nombreCliente"]!= null)
+						if(isset($_POST["idCliente"]) && $_POST["idCliente"]!= null)
 						{
-							$nombrecliente = $_POST["nombreCliente"];
-							$clientes = ControladorPaginas::ctrConsultaCliente("nombre",$nombrecliente);
-                            $reservaciones = ControladorPaginas::ctrConsultaReservacion("pk_id_cliente", null,$clientes["pk_id_cliente"]);
+							$idcliente = $_POST["idCliente"];
+							
+                            $reservaciones = ControladorPaginas::ctrConsultaReservacion("pk_id_cliente", $idcliente);
 						}
 						else{
-							$clientes = ControladorPaginas::ctrConsultaCliente(null, null);
-                             $reservaciones = ControladorPaginas::ctrConsultaReservacion(null,null,null,null);
+							
+                            $reservaciones = ControladorPaginas::ctrConsultaReservacion(null,null);
                             
 
 						}
@@ -73,45 +72,67 @@ $clientes = ControladorPaginas::ctrConsultaCliente(null, null);
 			<th>  </th>
 			<th>  </th>
 			<th>  </th>
-			<th><a href="index.php?pagina=registrocliente">Nuevo cliente</a></th>
+			
 		</thead>
 		</tr>
 		</table>
 
-<table class="table table-striped">
+<table class="table table-striped table-sm">
 	<thead>
 		
 		<tr>
-			<th>id</th>
-			<th>Nombre</th>
-			<th>Apellido</th>
-			<th>Correo</th>
-			<th>Usuario</th>
-            <th>Nombre</th>
-			<th>Apellido</th>
-			<th>Correo</th>
-			<th>Usuario</th>
+			<th>id Reservación</th>
+			<th>id cliente</th>
+			<th>Nombre cliente</th>
+			<th>Fecha de reservación</th>
+			<th>Inicio del tour</th>
+            <th>Fin del tour</th>
+			<th>id tour</th>
+			<th>Provincia</th>
+			<th>Estado de pago</th>
             
 		</tr>
 	</thead>
 
 	<tbody>
 
-	<?php foreach ($empleados as $emp): ?>
+	<?php foreach ($reservaciones as $res): ?>
 
 		<tr>
-			<td><?php echo $emp["pk_id_empleado"]; ?></td>
-			<td><?php echo $emp["nombre"]; ?></td>
-			<td><?php echo $emp["apellido"]; ?></td>
-			<td><?php echo $emp["correo"]; ?></td>
-            <td><?php echo $emp["nombre_cargo"]; ?></td>
-			<td><?php echo $emp["nombre_usuario"]; ?></td>
+		<td><?php echo $res["pk_id_reservacion"]; ?></td>
+		<td><?php echo $res["fk_cliente"]; ?></td>
+		<td><?php echo $res["nombre"]; ?></td>
+			<td><?php echo $res["fecha_reservacion"]; ?></td>
+			<td><?php echo $res["fecha_inicio"]; ?></td>
+			<td><?php echo $res["fecha_fin"]; ?></td>
+            <td><?php echo $res["fk_tour_provincia"]; ?></td>
+			<td><?php echo $res["nombre_provincia"]; ?></td>
+			<td><?php echo $res["estado"]; ?></td>
             <td> 
 			<div class="btn-group">
 			<div>
-			<a href="index.php?pagina=editarempleado&id=<?php echo $emp["pk_id_empleado"]; ?>" class="btn btn-warning" >Editar</a>
-            </div>
+			<!--<a href="index.php?pagina=editarempleado&id=<?php //echo $emp["pk_id_empleado"]; ?>" class="btn btn-warning" >Editar</a>
+            --></div>
 			</div>
+			<form method="post">
+                
+                <input type="hidden" value="<?php echo $res["pk_id_reservacion"]; ?>" name="cancelarReservacion">
+				<select name="can">
+				<option value="<?php echo $res["pk_id_estado"]; ?>" ><?php echo $res["estado"]; ?></option>
+            	
+            		<option value ="1">Realizado</option>
+					<option value ="2">Pendiente</option>
+					<option value ="3">Cancelado</option>
+
+            		</select>
+
+
+					<?php
+                    $cancelar = ControladorPaginas::ctrEstadoReservacion();
+					?>
+					
+					<button type="submit" class="btn btn-secondary btn-sm">Cambiar estado de pago</button>
+			</form>	
 			</td>
 		</tr>
 		
