@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-06-2021 a las 02:37:40
+-- Tiempo de generación: 17-06-2021 a las 20:17:17
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -73,7 +73,8 @@ INSERT INTO `cliente` (`pk_id_cliente`, `nombre`, `apellido`, `fecha_nacimiento`
 (15, 'Rafelys', 'Delgado', '1995-08-10', '39999973652', '6764575566', '2366865522', 'rafelys@gmail.com', NULL),
 (18, 'Miguel', 'Faride', '2000-07-06', '2736789832', '7823276255', '8378897265', 'miguelito@gmail.com', NULL),
 (20, 'ikhjoij', 'kljil', '2021-05-05', '888', '99', '99', 'lkioio@fvdsfsd.com', NULL),
-(21, 'jkhijhh', 'sdwd', '2021-06-26', '87898', '99', '909', 'wsdwe@gmial.com', NULL);
+(21, 'jkhijhh', 'sdwd', '2021-06-26', '87898', '99', '909', 'wsdwe@gmial.com', NULL),
+(22, 'Jose', 'Andres', '2007-07-10', '3212341223', '2343321112', '1244323442', 'joelito@gmail.com', NULL);
 
 -- --------------------------------------------------------
 
@@ -186,14 +187,15 @@ CREATE TABLE `reservacion_cliente` (
 
 INSERT INTO `reservacion_cliente` (`pk_id_reservacion`, `fk_tour_provincia`, `fk_cliente`, `fk_estado_pago`, `fecha_reservacion`) VALUES
 (1, 1, 1, 3, '2021-05-25 00:00:00'),
-(6, 1, 1, 2, '2021-06-15 07:48:28'),
+(6, 1, 1, 3, '2021-06-15 07:48:28'),
 (7, 3, 1, 2, '2021-06-15 15:29:13'),
 (8, 2, 2, 2, '2021-06-15 19:26:39'),
 (9, 1, 2, 2, '2021-06-15 19:30:44'),
 (10, 4, 1, 3, '2021-06-15 23:00:53'),
 (11, 17, 1, 3, '2021-06-16 17:36:04'),
-(12, 17, 1, 2, '2021-06-16 17:39:17'),
-(13, 14, 13, 2, '2021-06-16 19:58:10');
+(12, 17, 1, 3, '2021-06-16 17:39:17'),
+(13, 14, 13, 2, '2021-06-16 19:58:10'),
+(14, 2, 13, 2, '2021-06-16 20:50:37');
 
 -- --------------------------------------------------------
 
@@ -247,9 +249,9 @@ INSERT INTO `tour_provincia` (`pk_tour_provincia`, `fk_provincia`, `descripcion`
 (13, 6, 'Tour hacia La Altagracia', '2021-07-07 01:00:00', '2021-07-18 06:00:00', '4000.00', 'images/laaltagracia.jpg', 'Tour Incluye:<br>\r\n- Transporte<br>\r\n- Visita Basílica de Nuestra Señora de la Altagracia<br>\r\n- Visita al Parque Nacional del Este<br>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n', 1),
 (14, 1, 'Vive la experiencia de conocer Constanza \r\n', '2021-07-21 02:00:00', '2021-07-22 06:00:00', '45000.00', 'images/constanza.jpg', 'Tour Incluye:<br>\r\n-Transporte<br>\r\n-Hospedaje <br>\r\n-Visita Parque Nacional Valle Nuevo<br>\r\n-Visita Las Piramides<br>\r\n-Visita Salto Aguas Blancas Waterfall<br>\r\n', 1),
 (15, 2, 'Tour de Verano a Puerto Plata.', '2021-07-19 02:00:00', '2021-07-20 06:00:00', '7000.00', 'images/puertoplata.jpg', 'Tour Incluye:<br>\r\n-Transporte confortable <br>\r\n-Te y café de bienvenida <br>\r\n-Desayuno, comida y cena <br>\r\n-Hotel<br>\r\n-Recorrido por los 27 Charcos de Damajagua <br>\r\n-Visita al teleférico <br>\r\n-Visita a Playa Dorada <br>', 1),
-(16, 3, 'Disfruta nuestro tour a Samaná.\r\n', '2021-07-21 02:00:00', '2021-07-22 06:00:00', '8000.00', 'images/samana.jpg', 'Tour Incluye:<br>\r\n-Transporte<br>\r\n-Desayuno, comida y cena.<br>\r\n-Hotel<br>\r\n-Visita al malecón de Samaná<br>\r\n-Visita a los 3 puentes de Samaná<br>\r\n-Visita a la Isla de Cayó Levantado<br>\r\n-Visita a la Fuente<br>', 1),
-(17, 2, 'Disfruta de nuestro tour a los Charcos de Damajuana y Playa Cofresi.\r\n', '2021-07-21 02:00:00', '2021-07-22 06:00:00', '7500.00', 'images/sdamajagua.jpg', 'Tour Incluye:<br>\r\n*Transporte<br>\r\n*Desayuno<br>\r\n*Comida<br>\r\n*Recorrido por los charcos<br>\r\n*Chalecos Salvavidas<br>\r\n*Visita a Playa Cofresi.<br>\r\n', 1),
-(118, 10, 'Tour hacia Barahona', '2021-06-11 00:00:00', '2021-06-18 00:00:00', '4000.00', 'images/barahona.jpg', 'Tour Incluye:<br>\r\n- Transporte<br>\r\n- Visita al Lago enriquillo<br>\r\n- Visita a la mina de Larimar<br>\r\n- Visita Catedral de Barahona<br>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n', 2);
+(16, 3, 'Disfruta nuestro tour a Samaná.\r\n', '2021-07-21 02:00:00', '2021-07-22 06:00:00', '8000.00', 'images/samana.jpg', 'Tour Incluye:<br>\r\n-Transporte<br>\r\n-Desayuno, comida y cena.<br>\r\n-Hotel<br>\r\n-Visita al malecón de Samaná<br>\r\n-Visita a los 3 puentes de Samaná<br>\r\n-Visita a la Isla de Cayó Levantado<br>\r\n-Visita a la Fuente<br>', 2),
+(17, 2, 'Disfruta de nuestro tour a los Charcos de Damajuana y Playa Cofresi.\r\n', '2021-03-15 00:00:00', '2021-07-22 00:00:00', '7500.00', 'images/singapore.jpg', 'Tour Incluye:<br>\r\n*Transporte<br>\r\n*Desayuno<br>\r\n*Comida<br>\r\n*Recorrido por los charcos<br>\r\n*Chalecos Salvavidas<br>\r\n*Visita a Playa Cofresi.<br>\r\n', 2),
+(118, 10, 'Tour hacia Barahona', '2021-06-11 00:00:00', '2021-06-18 00:00:00', '4000.00', 'images/images/barahona.jpg', 'Tour Incluye:<br>\r\n- Transporte<br>\r\n- Visita al Lago enriquillo<br>\r\n- Visita a la mina de Larimar<br>\r\n- Visita Catedral de Barahona<br>\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n', 1);
 
 -- --------------------------------------------------------
 
@@ -281,7 +283,8 @@ INSERT INTO `usuario` (`pk_id_usuario`, `nombre_usuario`, `contrasena`, `fk_tipo
 (18, 'migue', '111', 1, 'miguelito@gmail.com'),
 (19, 'uiy8yu', 'ioii', 1, 'kjuhiuy@gmail.com'),
 (20, 'jklnklj', 'jkhh', 1, 'lkioio@fvdsfsd.com'),
-(21, 'juhdsisuhd', 'jkhkj', 1, 'wsdwe@gmial.com');
+(21, 'juhdsisuhd', 'jkhkj', 1, 'wsdwe@gmial.com'),
+(22, 'joe', '111', 1, 'joelito@gmail.com');
 
 --
 -- Índices para tablas volcadas
@@ -368,7 +371,7 @@ ALTER TABLE `cargo`
 -- AUTO_INCREMENT de la tabla `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `pk_id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `pk_id_cliente` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT de la tabla `empleado`
@@ -398,7 +401,7 @@ ALTER TABLE `provincia`
 -- AUTO_INCREMENT de la tabla `reservacion_cliente`
 --
 ALTER TABLE `reservacion_cliente`
-  MODIFY `pk_id_reservacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `pk_id_reservacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de la tabla `tipo_usuario`
@@ -416,7 +419,7 @@ ALTER TABLE `tour_provincia`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `pk_id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `pk_id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Restricciones para tablas volcadas
