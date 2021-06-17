@@ -60,20 +60,6 @@ function validacionregistrocliente() {
       if( !(/^\d{11}$/.test(cedula))  && cedula.length > 11 || cedula.length < 11) {
         alert('[ERROR] Debe insertar 11 dígitos en Cédula sin separarlos');
         return false;
-      }
-    /*else if () {
-      // Si no se cumple la condicion...
-      alert('[ERROR] El campo debe tener un valor de...');
-      return false;
-    }
-
-    else if () {
-      // Si no se cumple la condicion...
-      alert('[ERROR] El campo debe tener un valor de...');
-      return false;
-    }*/
-  
-    // Si el script ha llegado a este punto, todas las condiciones
-    // se han cumplido, por lo que se devuelve el valor true
+      ]
     return true;
   }
